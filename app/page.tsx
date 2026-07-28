@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase'
 
 // 預設可供選擇的諮詢時段
 const TIME_SLOTS = [
-  '09:00', '10:00', '11:00', 
+  '09:00', '10:00', '11:00',
   '12:00', '13:00', '14:00',
   '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'
 ]
@@ -23,7 +23,7 @@ const SERVICES = [
     subtitle: '生命設計實驗室',
     desc: '適合喜歡專屬對話、希望能針對個人現狀深入探討與拆解的人。（線上 / 面談）',
     tag: '一對一深度溝通',
-    headerBg: 'bg-amber-400', 
+    headerBg: 'bg-amber-400',
     headerText: 'text-amber-950',
     tagBg: 'bg-sky-100',
     tagText: 'text-sky-900'
@@ -70,12 +70,12 @@ export default function Home() {
   // 文章狀態
   const [posts, setPosts] = useState<any[]>([])
   const [loadingPosts, setLoadingPosts] = useState<boolean>(true)
-  
+
   // 預約與日曆狀態
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [selectedSlot, setSelectedSlot] = useState<string>('')
   const [bookedSlots, setBookedSlots] = useState<string[]>([]) // 存放已預約時段
-  
+
   // 表單狀態
   const [formData, setFormData] = useState({
     name: '',
@@ -163,7 +163,7 @@ export default function Home() {
       const year = selectedDate.getFullYear()
       const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
       const day = String(selectedDate.getDate()).padStart(2, '0')
-      
+
       const localIsoString = `${year}-${month}-${day}T${selectedSlot}:00`
       const appointmentIsoDate = new Date(localIsoString).toISOString()
 
@@ -201,7 +201,7 @@ export default function Home() {
       if (error) throw error
 
       setSubmitMessage('🎉 預約成功！我們將會透過您提供的聯絡方式與您確認時間。')
-      
+
       setFormData({
         name: '',
         email: '',
@@ -234,7 +234,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-800 p-6 md:p-16">
       <div className="max-w-5xl mx-auto space-y-20">
-        
+
         {/* 頁首 Header */}
         <header className="flex justify-between items-center border-b pb-4 border-slate-200 sticky top-0 bg-slate-50/90 backdrop-blur z-50">
           <h1 className="text-2xl font-bold tracking-wide text-slate-900">
@@ -263,9 +263,9 @@ export default function Home() {
             <p className="text-slate-700 text-base md:text-lg leading-relaxed">
               生命設計（Life Design），是把自己的生命當作一個待解決的<b className="text-slate-900">「設計問題」</b>，透過<b className="text-slate-900">設計思考 (Design Thinking)</b> 的方法拆解適合自己的生活方式。
             </p>
-            
+
             <div className="bg-amber-100/80 border-l-4 border-amber-400 p-5 rounded-r-xl text-slate-900 text-sm md:text-base leading-relaxed">
-              如果不設計自己的人生，<b className="text-slate-900 bg-amber-200 px-1">我們只能接受這個社會標準化的各種生命模型</b>，只能過著握在社會架上的罐頭人生。但是，每個人都是獨立又特別的個體，將標準化的方式直接套用總是會感覺不舒適、不順暢。因此，我結合了多本書籍，統整了各種方法論，建立了一套<b className="text-slate-900 bg-amber-200 px-1">專屬的生命設計流程</b>，這套架構也已經幫助了許多人找到生命方向，開始掌舵並啟動自己喜歡的人生！
+              如果不設計自己的人生，<b className="text-slate-900 bg-amber-200 px-1">我們只能接受這個社會標準化的各種生命模型</b>，只能過著在社會架上的罐頭人生。但是，每個人都是獨立又特別的個體，將標準化的方式直接套用總是會感覺不舒適、不順暢。因此，我結合了多本書籍，統整了各種方法論，建立了一套<b className="text-slate-900 bg-amber-200 px-1">專屬的生命設計流程</b>，這套架構也已經幫助了許多人找到生命方向，開始掌舵並啟動自己喜歡的人生！
             </div>
           </div>
 
@@ -289,7 +289,7 @@ export default function Home() {
                 <p className="text-xs text-slate-900 font-bold text-right">— 目前正在念頂大理工研究所的 Wu</p>
               </div>
             </div>
-            
+
             <p className="text-center text-slate-700 text-sm pt-2 font-medium">
               如果你也在迷惘、或只是有一點點的不確定，都歡迎來找我聊聊！<br className="hidden md:inline" />
               <span className="text-slate-900 font-bold bg-amber-100 px-2.5 py-1 rounded mt-1 inline-block">
@@ -317,8 +317,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICES.map((item) => (
-              <div 
-                key={item.id} 
+              <div
+                key={item.id}
                 className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-sky-300 shadow-sm hover:shadow-md transition flex flex-col justify-between"
               >
                 <div>
@@ -346,7 +346,7 @@ export default function Home() {
 
                 <div className="p-5 pt-0 space-y-2">
                   {/* 按鈕 1：查看詳細介紹 (跳轉至專屬頁面) */}
-                  <Link 
+                  <Link
                     href={item.url}
                     className="block text-center text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 py-2.5 rounded-lg transition cursor-pointer"
                   >
@@ -354,8 +354,8 @@ export default function Home() {
                   </Link>
 
                   {/* 按鈕 2：免費預約 (移動至本頁預約表單) */}
-                  <a 
-                    href="#booking" 
+                  <a
+                    href="#booking"
                     className="block text-center text-xs font-bold text-amber-950 bg-amber-400 hover:bg-amber-500 py-2 rounded-lg transition shadow-sm"
                   >
                     免費預約了解
@@ -402,11 +402,11 @@ export default function Home() {
               </span>
               <span className="text-slate-900 font-bold text-sm bg-amber-100 px-2 py-0.5 rounded">先聊聊，再決定</span>
             </div>
-            
+
             <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">
               免費預約 30 分鐘服務體驗與諮詢
             </h3>
-            
+
             <p className="text-slate-600 text-sm md:text-base">
               不確定哪種方案適合你？先預約 30 分鐘線上聊聊，快速釐清現狀與需求，再決定是否繼續！
             </p>
@@ -430,7 +430,7 @@ export default function Home() {
           <hr className="border-slate-100" />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-2">
-            
+
             {/* 左側：日曆與時段選擇 */}
             <div className="space-y-6">
               <div>
@@ -461,13 +461,12 @@ export default function Home() {
                         type="button"
                         disabled={isBooked}
                         onClick={() => setSelectedSlot(slot)}
-                        className={`py-2 px-2 text-xs md:text-sm font-semibold rounded-lg transition-all ${
-                          isBooked
+                        className={`py-2 px-2 text-xs md:text-sm font-semibold rounded-lg transition-all ${isBooked
                             ? 'bg-slate-100 text-slate-400 cursor-not-allowed line-through'
                             : isSelected
-                            ? 'bg-sky-500 text-white shadow-md font-bold'
-                            : 'bg-slate-100 text-slate-700 hover:bg-amber-100 hover:text-amber-900'
-                        }`}
+                              ? 'bg-sky-500 text-white shadow-md font-bold'
+                              : 'bg-slate-100 text-slate-700 hover:bg-amber-100 hover:text-amber-900'
+                          }`}
                       >
                         {slot} {isBooked ? '(滿)' : ''}
                       </button>
@@ -578,13 +577,13 @@ export default function Home() {
 
         {/* 5. 關於我 About Me 區塊 */}
         <section id="about" className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200 space-y-10">
-          
+
           <div className="grid md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-5 text-center md:text-left space-y-4">
               <div className="w-56 h-56 mx-auto md:mx-0 rounded-full overflow-hidden border-4 border-amber-300 shadow-md bg-amber-50 relative">
-                <Image 
-                  src="/mindsay-avatar.png" 
-                  alt="Min YANG" 
+                <Image
+                  src="/mindsay-avatar.png"
+                  alt="Min YANG"
                   fill
                   sizes="224px"
                   className="object-cover"
@@ -628,11 +627,11 @@ export default function Home() {
               <p>
                 生命設計實驗室 Life Design Lab 不只將我自己脫出泥沼，也在這兩年協助了多位學員展開新人生的腳本，因此我希望可以把這樣的好東西，分享給大家，一起活出專屬自己的人生劇本！
               </p>
-            <div className="pt-2 flex items-center space-x-2 text-sm">
+              <div className="pt-2 flex items-center space-x-2 text-sm">
                 <span>🌐 看更多日常隨筆或最新活動，我的 Instagram：</span>
-                <a 
-                  href="https://www.instagram.com/mindsayseverything" 
-                  target="_blank" 
+                <a
+                  href="https://www.instagram.com/mindsayseverything"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="bg-sky-200 hover:bg-sky-500 text-slate-900 px-3 py-1 rounded font-mono text-xs font-bold transition shadow-sm inline-block"
                 >
