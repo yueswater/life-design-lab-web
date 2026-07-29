@@ -90,6 +90,19 @@ export async function updateAppointmentPaid(id: string, isPaid: boolean): Promis
   }
 }
 
+export async function exportAppointmentsCsv(ids: string[]): Promise<Blob> {
+  const response = await fetch(`${API_BASE_URL}/api/admin/appointments/export`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ids }),
+  });
+  if (!response.ok) {
+    throw new Error(await parseError(response, '匯出失敗，請稍後再試。'));
+  }
+  return response.blob();
+}
+
 export async function updateAppointmentsStatusBatch(
   ids: string[],
   status: AdminAppointment['status'],

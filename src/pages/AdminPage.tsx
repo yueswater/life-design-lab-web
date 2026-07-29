@@ -11,9 +11,11 @@ import {
   ChevronRight,
   SlidersHorizontal,
   Triangle,
+  Download,
 } from 'lucide-react';
 import {
   AdminAppointment,
+  exportAppointmentsCsv,
   fetchAdminAppointments,
   updateAppointmentPaid,
   updateAppointmentStatus,
@@ -95,6 +97,7 @@ export default function AdminPage() {
   const [busyId, setBusyId] = useState<string | null>(null);
   const [paidBusyId, setPaidBusyId] = useState<string | null>(null);
   const [batchBusy, setBatchBusy] = useState(false);
+  const [exportBusy, setExportBusy] = useState(false);
   const [query, setQuery] = useState('');
   const [dateStart, setDateStart] = useState(() => {
     const d = new Date();
@@ -247,6 +250,24 @@ export default function AdminPage() {
     }
   };
 
+  const handleExport = async () => {
+    if (!filtered) return;
+    setExportBusy(true);
+    try {
+      const blob = await exportAppointmentsCsv(filtered.map((a) => a.id));
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `appointments-${toDateKey(new Date())}.csv`;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '匯出失敗，請稍後再試。');
+    } finally {
+      setExportBusy(false);
+    }
+  };
+
   const openCancelDialog = (ids: string[]) => {
     setCancelReason('');
     setCancelIds(ids);
@@ -321,6 +342,20 @@ export default function AdminPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={handleExport}
+              disabled={exportBusy || !filtered || filtered.length === 0}
+              className="flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm font-semibold text-slate-700 transition-opacity hover:text-[#023047] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {exportBusy ? (
+                <Loader2 className="h-3.5 w-3.5 animate-spin" />
+              ) : (
+                <Download className="h-3.5 w-3.5" />
+              )}
+              匯出資料
+            </button>
+
             <Popover
               panelClassName="w-72 p-4"
               trigger={({ onClick, open }) => (
