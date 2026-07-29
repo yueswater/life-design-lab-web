@@ -5,6 +5,14 @@ import { formatSource, pickRandomQuote, Quote } from '../lib/quotes';
 
 const VISIBLE_DURATION_MS = 2000;
 
+// Mirrors the top-level paths registered in App.tsx — anything else resolves
+// to the 404 page, which shouldn't get the plane/quote moment.
+const KNOWN_PATHS = new Set(['', 'about', 'book', 'terms', 'privacy', 'admin', 'admin/login']);
+
+function isKnownRoute(pathname: string): boolean {
+  return KNOWN_PATHS.has(pathname.replace(/^\/|\/$/g, ''));
+}
+
 // Plays a paper-plane + life-design-quote moment, centered on screen over a
 // blurred backdrop, every time the route changes — and once on first load,
 // which also covers a hard refresh since that remounts the whole app.
@@ -17,6 +25,12 @@ export const PageTransition: React.FC = () => {
   const isFirstRun = useRef(true);
 
   useEffect(() => {
+    if (!isKnownRoute(location.pathname)) {
+      isFirstRun.current = false;
+      setVisible(false);
+      return;
+    }
+
     if (!isFirstRun.current) {
       const next = pickRandomQuote(lastIndex.current);
       lastIndex.current = next.index;
