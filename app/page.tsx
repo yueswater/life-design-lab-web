@@ -5,7 +5,12 @@ import Calendar from 'react-calendar'
 import 'react-calendar/dist/Calendar.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { supabase } from '../lib/supabase'
+import {
+  createAppointment,
+  getBookedSlots,
+  getPosts,
+  type Post
+} from '../lib/api'
 
 // 預設可供選擇的諮詢時段
 const TIME_SLOTS = [
@@ -66,9 +71,13 @@ const SERVICES = [
   }
 ]
 
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error)
+}
+
 export default function Home() {
   // 文章狀態
-  const [posts, setPosts] = useState<any[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
   const [loadingPosts, setLoadingPosts] = useState<boolean>(true)
 
   // 預約與日曆狀態
@@ -95,21 +104,14 @@ export default function Home() {
   // 2. 當選擇的日期變更時，自動查詢該日期的已預約時段
   useEffect(() => {
     fetchBookedSlots(selectedDate)
-    setSelectedSlot('') // 切換日期時，重置選取的時段
   }, [selectedDate])
 
   async function fetchPosts() {
     try {
       setLoadingPosts(true)
-      const { data, error } = await supabase
-        .from('posts')
-        .select('*')
-        .order('created_at', { ascending: false })
-
-      if (error) throw error
-      setPosts(data || [])
-    } catch (err: any) {
-      console.error('抓取文章失敗:', err.message)
+      setPosts(await getPosts())
+    } catch (error: unknown) {
+      console.error('抓取文章失敗:', getErrorMessage(error))
     } finally {
       setLoadingPosts(false)
     }
@@ -123,27 +125,9 @@ export default function Home() {
       const day = String(date.getDate()).padStart(2, '0')
       const dateStr = `${year}-${month}-${day}`
 
-      // 搜尋符合當天日期的預約紀錄
-      const { data, error } = await supabase
-        .from('appointments')
-        .select('appointment_date')
-        .gte('appointment_date', `${dateStr}T00:00:00`)
-        .lte('appointment_date', `${dateStr}T23:59:59`)
-        .neq('status', 'cancelled')
-
-      if (error) throw error
-
-      if (data) {
-        const slots = data.map((item) => {
-          const bookedDate = new Date(item.appointment_date)
-          const hours = String(bookedDate.getHours()).padStart(2, '0')
-          const minutes = String(bookedDate.getMinutes()).padStart(2, '0')
-          return `${hours}:${minutes}`
-        })
-        setBookedSlots(slots)
-      }
-    } catch (err: any) {
-      console.error('撈取預約時段失敗:', err.message)
+      setBookedSlots(await getBookedSlots(dateStr))
+    } catch (error: unknown) {
+      console.error('撈取預約時段失敗:', getErrorMessage(error))
     }
   }
 
@@ -164,41 +148,17 @@ export default function Home() {
       const month = String(selectedDate.getMonth() + 1).padStart(2, '0')
       const day = String(selectedDate.getDate()).padStart(2, '0')
 
-      const localIsoString = `${year}-${month}-${day}T${selectedSlot}:00`
-      const appointmentIsoDate = new Date(localIsoString).toISOString()
+      const appointmentDate = `${year}-${month}-${day}`
 
-      // 防重複預約檢查
-      const { data: existingBookings, error: checkError } = await supabase
-        .from('appointments')
-        .select('id')
-        .eq('appointment_date', appointmentIsoDate)
-        .neq('status', 'cancelled')
-
-      if (checkError) throw checkError
-
-      if (existingBookings && existingBookings.length > 0) {
-        setSubmitMessage('⚠️ 該時段剛好已被他人預約，請選擇其他時段！')
-        fetchBookedSlots(selectedDate)
-        setIsSubmitting(false)
-        return
-      }
-
-      const contactInfo = `[${formData.contactPlatform}] ${formData.contactDetail}`
-
-      const { error } = await supabase
-        .from('appointments')
-        .insert([
-          {
-            client_name: formData.name,
-            client_email: formData.email,
-            appointment_date: appointmentIsoDate,
-            contact: contactInfo,
-            message: formData.notes,
-            status: 'pending'
-          }
-        ])
-
-      if (error) throw error
+      await createAppointment({
+        name: formData.name,
+        email: formData.email,
+        contactPlatform: formData.contactPlatform,
+        contactDetail: formData.contactDetail,
+        notes: formData.notes,
+        appointmentDate,
+        slot: selectedSlot
+      })
 
       setSubmitMessage('🎉 預約成功！我們將會透過您提供的聯絡方式與您確認時間。')
 
@@ -211,8 +171,15 @@ export default function Home() {
       })
       setSelectedSlot('')
       fetchBookedSlots(selectedDate)
-    } catch (err: any) {
-      setSubmitMessage(`❌ 預約失敗: ${err.message}`)
+    } catch (error: unknown) {
+      const message = getErrorMessage(error)
+
+      if (message === 'slot already booked') {
+        setSubmitMessage('⚠️ 該時段剛好已被他人預約，請選擇其他時段！')
+        fetchBookedSlots(selectedDate)
+      } else {
+        setSubmitMessage(`❌ 預約失敗: ${message}`)
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -437,7 +404,10 @@ export default function Home() {
                 <label className="block text-sm font-bold text-slate-900 mb-2">1. 選擇日期</label>
                 <div className="flex justify-center bg-slate-50 p-3 rounded-xl border border-slate-200">
                   <Calendar
-                    onChange={(val) => setSelectedDate(val as Date)}
+                    onChange={(value) => {
+                      setSelectedDate(value as Date)
+                      setSelectedSlot('')
+                    }}
                     value={selectedDate}
                     minDate={new Date()}
                     locale="zh-TW"
