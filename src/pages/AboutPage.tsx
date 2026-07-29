@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import type { LayoutContext } from '../components/Layout';
@@ -8,6 +9,10 @@ export default function AboutPage() {
   const { openTryFree } = useOutletContext<LayoutContext>();
   const { lang } = useLanguage();
   const t = useTranslation();
+
+  useEffect(() => {
+    document.title = `${t.nav.about} | ${t.footer.brandName}`;
+  }, [t.nav.about, t.footer.brandName]);
 
   return (
     <>

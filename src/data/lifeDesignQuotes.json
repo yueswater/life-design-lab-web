@@ -4,7 +4,10 @@
       "zh": "你無法預先把人生中的點點滴滴串連起來，只有在回顧時，你才會明白它們是如何連在一起的。",
       "en": "You can't connect the dots looking forward; you can only connect them looking backwards."
     },
-    "author": { "zh": "史蒂夫·賈伯斯", "en": "Steve Jobs" },
+    "author": {
+      "zh": "史蒂夫·賈伯斯",
+      "en": "Steve Jobs"
+    },
     "source": {
       "zh": "史丹佛大學畢業典禮演講，2005",
       "en": "Stanford Commencement Address, 2005"
@@ -16,8 +19,14 @@
       "zh": "心中有了為何而活的理由，幾乎什麼樣的痛苦都能忍受。",
       "en": "Those who have a 'why' to live, can bear with almost any 'how'."
     },
-    "author": { "zh": "維克多·法蘭克", "en": "Viktor Frankl" },
-    "source": { "zh": "活出意義來", "en": "Man's Search for Meaning" },
+    "author": {
+      "zh": "維克多·法蘭克",
+      "en": "Viktor Frankl"
+    },
+    "source": {
+      "zh": "活出意義來",
+      "en": "Man's Search for Meaning"
+    },
     "isBook": true
   },
   {
@@ -25,8 +34,14 @@
       "zh": "在告訴生命你打算拿它做什麼之前，先聽聽它打算拿你做什麼。",
       "en": "Before you tell your life what you intend to do with it, listen for what it intends to do with you."
     },
-    "author": { "zh": "帕克·帕爾默", "en": "Parker Palmer" },
-    "source": { "zh": "讓生命發聲", "en": "Let Your Life Speak" },
+    "author": {
+      "zh": "帕克·帕爾默",
+      "en": "Parker Palmer"
+    },
+    "source": {
+      "zh": "讓生命發聲",
+      "en": "Let Your Life Speak"
+    },
     "isBook": true
   },
   {
@@ -34,8 +49,14 @@
       "zh": "別問這世界需要什麼，問問是什麼讓你感到活著，然後去做。因為這世界需要的，正是活過來的人。",
       "en": "Don't ask what the world needs. Ask what makes you come alive, and go do it. Because what the world needs is people who have come alive."
     },
-    "author": { "zh": "霍華德·瑟曼", "en": "Howard Thurman" },
-    "source": { "zh": "常被引用的一句話", "en": "Widely attributed saying" },
+    "author": {
+      "zh": "霍華德·瑟曼",
+      "en": "Howard Thurman"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
     "isBook": false
   },
   {
@@ -43,8 +64,14 @@
       "zh": "知之者不如好之者，好之者不如樂之者。",
       "en": "They who know it are not equal to those who love it, and they who love it are not equal to those who delight in it."
     },
-    "author": { "zh": "孔子", "en": "Confucius" },
-    "source": { "zh": "論語·雍也", "en": "The Analects" },
+    "author": {
+      "zh": "孔子",
+      "en": "Confucius"
+    },
+    "source": {
+      "zh": "論語·雍也",
+      "en": "The Analects"
+    },
     "isBook": true
   },
   {
@@ -52,8 +79,14 @@
       "zh": "千里之行，始於足下。",
       "en": "A journey of a thousand miles begins with a single step."
     },
-    "author": { "zh": "老子", "en": "Laozi" },
-    "source": { "zh": "道德經", "en": "Tao Te Ching" },
+    "author": {
+      "zh": "老子",
+      "en": "Laozi"
+    },
+    "source": {
+      "zh": "道德經",
+      "en": "Tao Te Ching"
+    },
     "isBook": true
   },
   {
@@ -61,8 +94,14 @@
       "zh": "吾生也有涯，而知也無涯。",
       "en": "My life has a limit, but knowledge has none."
     },
-    "author": { "zh": "莊子", "en": "Zhuangzi" },
-    "source": { "zh": "莊子·養生主", "en": "Zhuangzi" },
+    "author": {
+      "zh": "莊子",
+      "en": "Zhuangzi"
+    },
+    "source": {
+      "zh": "莊子·養生主",
+      "en": "Zhuangzi"
+    },
     "isBook": true
   },
   {
@@ -70,10 +109,1483 @@
       "zh": "沒有什麼比心中藏著一個未曾說出口的故事更折磨人了。",
       "en": "There is no greater agony than bearing an untold story inside you."
     },
-    "author": { "zh": "瑪雅·安傑洛", "en": "Maya Angelou" },
+    "author": {
+      "zh": "瑪雅·安傑洛",
+      "en": "Maya Angelou"
+    },
     "source": {
       "zh": "我知道籠中鳥為何歌唱",
       "en": "I Know Why the Caged Bird Sings"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "生命設計沒有正確答案，只有你此刻最好的原型——做出來，然後從中學習。",
+      "en": "There is no right answer to a well-designed life — only your best prototype for now, built to learn from."
+    },
+    "author": {
+      "zh": "比爾·柏內特 & 戴夫·埃文斯",
+      "en": "Bill Burnett & Dave Evans"
+    },
+    "source": {
+      "zh": "做自己的生命設計師",
+      "en": "Designing Your Life"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "你不是在尋找那個唯一正確的人生，你是在打造一個值得活的人生。",
+      "en": "You're not looking for the one right life — you're building a life worth living."
+    },
+    "author": {
+      "zh": "比爾·柏內特 & 戴夫·埃文斯",
+      "en": "Bill Burnett & Dave Evans"
+    },
+    "source": {
+      "zh": "做自己的生命設計師",
+      "en": "Designing Your Life"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "恆毅力是對長期目標的熱情與堅持，是一場馬拉松，而非短跑。",
+      "en": "Grit is passion and perseverance for long-term goals. It's a marathon, not a sprint."
+    },
+    "author": {
+      "zh": "安琪拉·達克沃斯",
+      "en": "Angela Duckworth"
+    },
+    "source": {
+      "zh": "恆毅力",
+      "en": "Grit"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "天賦決定你能多快進步，但只有努力，才能決定你最終走得多遠。",
+      "en": "Talent x effort = skill. Skill x effort = achievement. Effort counts twice."
+    },
+    "author": {
+      "zh": "安琪拉·達克沃斯",
+      "en": "Angela Duckworth"
+    },
+    "source": {
+      "zh": "恆毅力",
+      "en": "Grit"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "成長心態相信能力可以被培養，這份信念本身，就能打開一個充滿學習的世界。",
+      "en": "In a growth mindset, people believe their abilities can be developed — this belief opens a world of learning."
+    },
+    "author": {
+      "zh": "卡蘿·杜維克",
+      "en": "Carol S. Dweck"
+    },
+    "source": {
+      "zh": "心態致勝",
+      "en": "Mindset"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "成功不在於你現在有多聰明，而在於你如何面對挑戰、努力與挫折。",
+      "en": "Success is about how you deal with challenges, effort, and setbacks, not just how smart you are right now."
+    },
+    "author": {
+      "zh": "卡蘿·杜維克",
+      "en": "Carol S. Dweck"
+    },
+    "source": {
+      "zh": "心態致勝",
+      "en": "Mindset"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人們買的不是你做什麼，而是你為什麼而做。",
+      "en": "People don't buy what you do; they buy why you do it."
+    },
+    "author": {
+      "zh": "賽門·西奈克",
+      "en": "Simon Sinek"
+    },
+    "source": {
+      "zh": "先問，為什麼？",
+      "en": "Start With Why"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "以終為始：先在心中構思，再付諸行動創造。",
+      "en": "Begin with the end in mind: all things are created twice — first mentally, then physically."
+    },
+    "author": {
+      "zh": "史蒂芬·柯維",
+      "en": "Stephen R. Covey"
+    },
+    "source": {
+      "zh": "與成功有約",
+      "en": "The 7 Habits of Highly Effective People"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "在刺激與回應之間，存在著一個空間，我們的成長與自由，就藏在那個空間裡。",
+      "en": "Between stimulus and response there is a space. In that space is our power to choose our response."
+    },
+    "author": {
+      "zh": "史蒂芬·柯維",
+      "en": "Stephen R. Covey"
+    },
+    "source": {
+      "zh": "與成功有約",
+      "en": "The 7 Habits of Highly Effective People"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "你不會上升到目標的高度，你只會落到系統的水平。",
+      "en": "You do not rise to the level of your goals. You fall to the level of your systems."
+    },
+    "author": {
+      "zh": "詹姆斯·克利爾",
+      "en": "James Clear"
+    },
+    "source": {
+      "zh": "原子習慣",
+      "en": "Atomic Habits"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "每一次微小的習慣，都是一張選票，投給你想成為的那種人。",
+      "en": "Every action you take is a vote for the type of person you wish to become."
+    },
+    "author": {
+      "zh": "詹姆斯·克利爾",
+      "en": "James Clear"
+    },
+    "source": {
+      "zh": "原子習慣",
+      "en": "Atomic Habits"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人類真正的獨特能力，是能夠大規模地相信共同的虛構故事。",
+      "en": "The real difference between us and chimpanzees is the ability to cooperate flexibly in large numbers."
+    },
+    "author": {
+      "zh": "哈拉瑞",
+      "en": "Yuval Noah Harari"
+    },
+    "source": {
+      "zh": "人類大歷史",
+      "en": "Sapiens"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "深度工作的能力，正在變得愈來愈稀有，也愈來愈珍貴。",
+      "en": "The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable."
+    },
+    "author": {
+      "zh": "卡爾·紐波特",
+      "en": "Cal Newport"
+    },
+    "source": {
+      "zh": "深度工作力",
+      "en": "Deep Work"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "當下，是你唯一真正擁有的東西。",
+      "en": "Realize deeply that the present moment is all you ever have."
+    },
+    "author": {
+      "zh": "艾克哈特·托勒",
+      "en": "Eckhart Tolle"
+    },
+    "source": {
+      "zh": "當下的力量",
+      "en": "The Power of Now"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "與其批評別人，不如試著去理解他們——這比批評更有意義，也更困難。",
+      "en": "Instead of condemning people, let's try to understand them. It is more profitable and interesting than criticism."
+    },
+    "author": {
+      "zh": "戴爾·卡內基",
+      "en": "Dale Carnegie"
+    },
+    "source": {
+      "zh": "人性的弱點",
+      "en": "How to Win Friends and Influence People"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "鳥要掙脫蛋殼而出。蛋是世界，人若要誕生，就得先摧毀一個世界。",
+      "en": "The bird fights its way out of the egg. The egg is the world. Who would be born must first destroy a world."
+    },
+    "author": {
+      "zh": "赫曼·赫塞",
+      "en": "Hermann Hesse"
+    },
+    "source": {
+      "zh": "徬徨少年時",
+      "en": "Demian"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "知識可以傳授，智慧卻不能，人必須親自去尋找、去體驗。",
+      "en": "Knowledge can be communicated, but not wisdom. One can find it, live it, be fortified by it, but one cannot communicate it."
+    },
+    "author": {
+      "zh": "赫曼·赫塞",
+      "en": "Hermann Hesse"
+    },
+    "source": {
+      "zh": "流浪者之歌",
+      "en": "Siddhartha"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "工作，是看得見的愛。",
+      "en": "Work is love made visible."
+    },
+    "author": {
+      "zh": "紀伯倫",
+      "en": "Kahlil Gibran"
+    },
+    "source": {
+      "zh": "先知",
+      "en": "The Prophet"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "你的孩子，並不是你的孩子；他們是生命對自身渴望而誕生的子女。",
+      "en": "Your children are not your children. They are the sons and daughters of Life's longing for itself."
+    },
+    "author": {
+      "zh": "紀伯倫",
+      "en": "Kahlil Gibran"
+    },
+    "source": {
+      "zh": "先知",
+      "en": "The Prophet"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "真正重要的東西，用眼睛是看不見的。",
+      "en": "What is essential is invisible to the eye."
+    },
+    "author": {
+      "zh": "聖修伯里",
+      "en": "Antoine de Saint-Exupéry"
+    },
+    "source": {
+      "zh": "小王子",
+      "en": "The Little Prince"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "如果你想造一艘船，不要只是召集人們收集木材、分派工作，而要教他們渴望遼闊無垠的大海。",
+      "en": "If you want to build a ship, don't drum up people to collect wood — teach them to long for the endless immensity of the sea."
+    },
+    "author": {
+      "zh": "聖修伯里",
+      "en": "Antoine de Saint-Exupéry"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "當你真心渴望某件事時，整個宇宙都會聯合起來幫助你完成。",
+      "en": "When you want something, all the universe conspires in helping you to achieve it."
+    },
+    "author": {
+      "zh": "保羅·科爾賀",
+      "en": "Paulo Coelho"
+    },
+    "source": {
+      "zh": "牧羊少年奇幻之旅",
+      "en": "The Alchemist"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "對心中所有懸而未解的問題要有耐心，試著去愛那些問題本身。",
+      "en": "Be patient toward all that is unsolved in your heart and try to love the questions themselves."
+    },
+    "author": {
+      "zh": "萊納·瑪利亞·里爾克",
+      "en": "Rainer Maria Rilke"
+    },
+    "source": {
+      "zh": "給青年詩人的信",
+      "en": "Letters to a Young Poet"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "我們的人生，是由我們的思想所塑造的。",
+      "en": "Our life is what our thoughts make it."
+    },
+    "author": {
+      "zh": "馬可·奧理略",
+      "en": "Marcus Aurelius"
+    },
+    "source": {
+      "zh": "沉思錄",
+      "en": "Meditations"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "不要浪費剩餘的生命去猜測別人的想法，那會讓你偏離自己真正的目的。",
+      "en": "Waste no more time arguing what a good man should be. Be one."
+    },
+    "author": {
+      "zh": "馬可·奧理略",
+      "en": "Marcus Aurelius"
+    },
+    "source": {
+      "zh": "沉思錄",
+      "en": "Meditations"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "我們常常不是沒有時間，而是浪費了太多時間。",
+      "en": "It is not that we have a short time to live, but that we waste a lot of it."
+    },
+    "author": {
+      "zh": "塞內卡",
+      "en": "Seneca"
+    },
+    "source": {
+      "zh": "論人生短暫",
+      "en": "On the Shortness of Life"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "在隆冬，我終於發現，我心中有一個不可戰勝的夏天。",
+      "en": "In the midst of winter, I found there was, within me, an invincible summer."
+    },
+    "author": {
+      "zh": "卡繆",
+      "en": "Albert Camus"
+    },
+    "source": {
+      "zh": "薛西弗斯的神話",
+      "en": "The Myth of Sisyphus"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "參透為何，才能承受任何。",
+      "en": "He who has a why to live can bear almost any how."
+    },
+    "author": {
+      "zh": "尼采",
+      "en": "Friedrich Nietzsche"
+    },
+    "source": {
+      "zh": "偶像的黃昏",
+      "en": "Twilight of the Idols"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "女人要寫作，必須要有錢，還要有一間屬於自己的房間。",
+      "en": "A woman must have money and a room of her own if she is to write fiction."
+    },
+    "author": {
+      "zh": "維吉尼亞·吳爾芙",
+      "en": "Virginia Woolf"
+    },
+    "source": {
+      "zh": "自己的房間",
+      "en": "A Room of One's Own"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "我們必須放下計畫好的人生，才能迎接等待著我們的那個人生。",
+      "en": "We must be willing to let go of the life we planned so as to have the life that is waiting for us."
+    },
+    "author": {
+      "zh": "喬瑟夫·坎伯",
+      "en": "Joseph Campbell"
+    },
+    "source": {
+      "zh": "千面英雄",
+      "en": "The Hero with a Thousand Faces"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "跟隨你的喜悅，看似無門之處，宇宙自會為你開一扇門。",
+      "en": "Follow your bliss and the universe will open doors where there were only walls."
+    },
+    "author": {
+      "zh": "喬瑟夫·坎伯",
+      "en": "Joseph Campbell"
+    },
+    "source": {
+      "zh": "千面英雄",
+      "en": "The Hero with a Thousand Faces"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "愛不是一種與生俱來的感覺，而是一門需要學習、需要練習的藝術。",
+      "en": "Love is not a feeling that just happens — it is an art, and like any art, it requires knowledge and effort."
+    },
+    "author": {
+      "zh": "埃里希·佛洛姆",
+      "en": "Erich Fromm"
+    },
+    "source": {
+      "zh": "愛的藝術",
+      "en": "The Art of Loving"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人所擁有的一切都可以被奪走，唯獨一件事不能——選擇自己態度的自由。",
+      "en": "Everything can be taken from a man but one thing: the freedom to choose one's attitude in any given set of circumstances."
+    },
+    "author": {
+      "zh": "維克多·法蘭克",
+      "en": "Viktor Frankl"
+    },
+    "source": {
+      "zh": "活出意義來",
+      "en": "Man's Search for Meaning"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人們會忘記你說過的話，忘記你做過的事，但永遠不會忘記你帶給他們的感受。",
+      "en": "People will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+    },
+    "author": {
+      "zh": "瑪雅·安傑洛",
+      "en": "Maya Angelou"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "你不需要看見整座樓梯，只要踏出第一步。",
+      "en": "You don't have to see the whole staircase, just take the first step."
+    },
+    "author": {
+      "zh": "馬丁·路德·金恩",
+      "en": "Martin Luther King Jr."
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "黑暗無法驅逐黑暗，只有光明可以；仇恨無法驅逐仇恨，只有愛可以。",
+      "en": "Darkness cannot drive out darkness; only light can do that. Hate cannot drive out hate; only love can do that."
+    },
+    "author": {
+      "zh": "馬丁·路德·金恩",
+      "en": "Martin Luther King Jr."
+    },
+    "source": {
+      "zh": "愛的力量",
+      "en": "Strength to Love"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "世界雖然充滿苦難，但也充滿了戰勝苦難的力量。",
+      "en": "Although the world is full of suffering, it is also full of the overcoming of it."
+    },
+    "author": {
+      "zh": "海倫·凱勒",
+      "en": "Helen Keller"
+    },
+    "source": {
+      "zh": "樂觀",
+      "en": "Optimism"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人生若不是一場大膽的冒險，就什麼都不是。",
+      "en": "Life is either a daring adventure or nothing at all."
+    },
+    "author": {
+      "zh": "海倫·凱勒",
+      "en": "Helen Keller"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "未來屬於那些相信自己夢想之美的人。",
+      "en": "The future belongs to those who believe in the beauty of their dreams."
+    },
+    "author": {
+      "zh": "愛蓮娜·羅斯福",
+      "en": "Eleanor Roosevelt"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "事情在完成之前，總看似不可能。",
+      "en": "It always seems impossible until it's done."
+    },
+    "author": {
+      "zh": "納爾遜·曼德拉",
+      "en": "Nelson Mandela"
+    },
+    "source": {
+      "zh": "漫漫自由路",
+      "en": "Long Walk to Freedom"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "生命中最偉大的榮耀，不在於從未跌倒，而在於每次跌倒後都能重新站起來。",
+      "en": "The greatest glory in living lies not in never falling, but in rising every time we fall."
+    },
+    "author": {
+      "zh": "納爾遜·曼德拉",
+      "en": "Nelson Mandela"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "我們的選擇，遠比我們的能力更能顯示出我們真正是誰。",
+      "en": "It is our choices that show what we truly are, far more than our abilities."
+    },
+    "author": {
+      "zh": "J.K. 羅琳",
+      "en": "J.K. Rowling"
+    },
+    "source": {
+      "zh": "哈利波特：消失的密室",
+      "en": "Harry Potter and the Chamber of Secrets"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "失敗的底層，是最堅實的地基，我在那裡重新打造了自己的人生。",
+      "en": "Rock bottom became the solid foundation on which I rebuilt my life."
+    },
+    "author": {
+      "zh": "J.K. 羅琳",
+      "en": "J.K. Rowling"
+    },
+    "source": {
+      "zh": "哈佛大學畢業典禮演講，2008",
+      "en": "Harvard Commencement Address, 2008"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "盡你所能，用你所有的，在你所在的地方，去做。",
+      "en": "Do what you can, with what you have, where you are."
+    },
+    "author": {
+      "zh": "西奧多·羅斯福",
+      "en": "Theodore Roosevelt"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "成功不是終點，失敗也不是末日，重要的是繼續前進的勇氣。",
+      "en": "Success is not final, failure is not fatal: it is the courage to continue that counts."
+    },
+    "author": {
+      "zh": "溫斯頓·邱吉爾",
+      "en": "Winston Churchill"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "生命中沒有什麼可怕的事，只有需要被理解的事。",
+      "en": "Nothing in life is to be feared, it is only to be understood."
+    },
+    "author": {
+      "zh": "瑪麗·居禮",
+      "en": "Marie Curie"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "只要有勇氣去追尋，所有的夢想都能實現。",
+      "en": "All our dreams can come true, if we have the courage to pursue them."
+    },
+    "author": {
+      "zh": "華特·迪士尼",
+      "en": "Walt Disney"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "我們每天不斷重複的行為，造就了我們自己；卓越，不是一種行為，而是一種習慣。",
+      "en": "We are what we repeatedly do. Excellence, then, is not an act, but a habit."
+    },
+    "author": {
+      "zh": "亞里斯多德",
+      "en": "Aristotle"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "未經檢視的人生，是不值得活的。",
+      "en": "The unexamined life is not worth living."
+    },
+    "author": {
+      "zh": "蘇格拉底",
+      "en": "Socrates"
+    },
+    "source": {
+      "zh": "柏拉圖《申辯篇》",
+      "en": "Plato's Apology"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "學而不思則罔，思而不學則殆。",
+      "en": "Learning without thought is labor lost; thought without learning is perilous."
+    },
+    "author": {
+      "zh": "孔子",
+      "en": "Confucius"
+    },
+    "source": {
+      "zh": "論語·為政",
+      "en": "The Analects"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "不患人之不己知，患不知人也。",
+      "en": "I will not be afflicted at men's not knowing me; I will be afflicted that I do not know men."
+    },
+    "author": {
+      "zh": "孔子",
+      "en": "Confucius"
+    },
+    "source": {
+      "zh": "論語·學而",
+      "en": "The Analects"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "天將降大任於斯人也，必先苦其心志，勞其筋骨。",
+      "en": "When Heaven is about to place a great responsibility on a person, it always first frustrates their spirit and will."
+    },
+    "author": {
+      "zh": "孟子",
+      "en": "Mencius"
+    },
+    "source": {
+      "zh": "孟子·告子下",
+      "en": "Mencius"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "知人者智，自知者明。",
+      "en": "Knowing others is wisdom, knowing yourself is enlightenment."
+    },
+    "author": {
+      "zh": "老子",
+      "en": "Laozi"
+    },
+    "source": {
+      "zh": "道德經",
+      "en": "Tao Te Ching"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "泉涸，魚相與處於陸，相呴以濕，相濡以沫，不如相忘於江湖。",
+      "en": "When the springs dry up, fish keep each other alive by breathing on one another — better to forget each other in rivers and lakes."
+    },
+    "author": {
+      "zh": "莊子",
+      "en": "Zhuangzi"
+    },
+    "source": {
+      "zh": "莊子·大宗師",
+      "en": "Zhuangzi"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "回首向來蕭瑟處，歸去，也無風雨也無晴。",
+      "en": "Looking back on the bleak road behind, I return — through it all, neither wind nor rain, nor sun."
+    },
+    "author": {
+      "zh": "蘇軾",
+      "en": "Su Shi"
+    },
+    "source": {
+      "zh": "定風波",
+      "en": "Ding Feng Bo"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "知是行之始，行是知之成。",
+      "en": "Knowledge is the beginning of action; action is the completion of knowledge."
+    },
+    "author": {
+      "zh": "王陽明",
+      "en": "Wang Yangming"
+    },
+    "source": {
+      "zh": "傳習錄",
+      "en": "Instructions for Practical Living"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "心之所向，素履以往，生如逆旅，一葦以航。",
+      "en": "Where the heart is drawn, walk toward it in simple shoes; life is a journey against the current — cross it on a single reed."
+    },
+    "author": {
+      "zh": "三毛",
+      "en": "Sanmao"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "所謂父女母子一場，只不過意味著，你和他的緣分就是今生今世不斷地目送他的背影漸行漸遠。",
+      "en": "What we call the bond of parent and child only means watching their back grow smaller as they walk away, again and again, for this lifetime."
+    },
+    "author": {
+      "zh": "龍應台",
+      "en": "Lung Ying-tai"
+    },
+    "source": {
+      "zh": "目送",
+      "en": "Watching His Back"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "孤獨沒有什麼不好，使孤獨變得不好，是因為我們害怕孤獨。",
+      "en": "There's nothing wrong with solitude — what makes it seem wrong is only our fear of it."
+    },
+    "author": {
+      "zh": "蔣勳",
+      "en": "Chiang Hsun"
+    },
+    "source": {
+      "zh": "孤獨六講",
+      "en": "Six Lectures on Solitude"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "生命的化妝，是在生活中不斷提升自己的境界。",
+      "en": "The truest adornment of life is the ceaseless raising of one's own inner state through living."
+    },
+    "author": {
+      "zh": "林清玄",
+      "en": "Lin Ching-hsuan"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "於千萬人之中遇見你所要遇見的人，於千萬年之中，時間的無涯的荒野裡，沒有早一步，也沒有晚一步。",
+      "en": "Amid millions of people, to meet the one you are meant to meet — in the boundless wilderness of time, not a step too early, not a step too late."
+    },
+    "author": {
+      "zh": "張愛玲",
+      "en": "Eileen Chang"
+    },
+    "source": {
+      "zh": "傾城之戀",
+      "en": "Love in a Fallen City"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "當你的名字被人輕輕呼喚，那便是鄉愁最初的形狀。",
+      "en": "When your name is softly called, that is the earliest shape of longing for home."
+    },
+    "author": {
+      "zh": "余光中",
+      "en": "Yu Kwang-chung"
+    },
+    "source": {
+      "zh": "鄉愁",
+      "en": "Nostalgia"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "天空沒有留下鳥的痕跡，但我已飛過。",
+      "en": "The bird sings a song of no meaning; the sky leaves no trace of birds, but I have already flown."
+    },
+    "author": {
+      "zh": "泰戈爾",
+      "en": "Rabindranath Tagore"
+    },
+    "source": {
+      "zh": "飛鳥集",
+      "en": "Stray Birds"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "如果你因錯過太陽而流淚，那麼你也將錯過群星。",
+      "en": "If you shed tears when you miss the sun, you also miss the stars."
+    },
+    "author": {
+      "zh": "泰戈爾",
+      "en": "Rabindranath Tagore"
+    },
+    "source": {
+      "zh": "飛鳥集",
+      "en": "Stray Birds"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "不管全世界怎麼看，我都認為自己的人生是屬於自己的，我要照著自己的節奏過。",
+      "en": "No matter what anyone else says, I believe my life belongs to me, and I'll live it at my own pace."
+    },
+    "author": {
+      "zh": "村上春樹",
+      "en": "Haruki Murakami"
+    },
+    "source": {
+      "zh": "挪威的森林",
+      "en": "Norwegian Wood"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "如果不趁還能奮不顧身的時候奮不顧身一次，人生就沒有什麼意思了。",
+      "en": "If you don't throw yourself in without holding back while you still can, life loses its meaning."
+    },
+    "author": {
+      "zh": "村上春樹",
+      "en": "Haruki Murakami"
+    },
+    "source": {
+      "zh": "挪威的森林",
+      "en": "Norwegian Wood"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "這世界很美好，值得我們奮戰。",
+      "en": "The world is a fine place and worth fighting for."
+    },
+    "author": {
+      "zh": "海明威",
+      "en": "Ernest Hemingway"
+    },
+    "source": {
+      "zh": "戰地鐘聲",
+      "en": "For Whom the Bell Tolls"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "人可以被毀滅，但不能被打敗。",
+      "en": "A man can be destroyed but not defeated."
+    },
+    "author": {
+      "zh": "海明威",
+      "en": "Ernest Hemingway"
+    },
+    "source": {
+      "zh": "老人與海",
+      "en": "The Old Man and the Sea"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "於是我們奮力向前，逆水行舟，卻不斷被浪潮推回過去。",
+      "en": "So we beat on, boats against the current, borne back ceaselessly into the past."
+    },
+    "author": {
+      "zh": "費茲傑羅",
+      "en": "F. Scott Fitzgerald"
+    },
+    "source": {
+      "zh": "大亨小傳",
+      "en": "The Great Gatsby"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "如果你想要幸福，就去愛；愛所有人，永遠犧牲自己，去追尋他人的幸福。",
+      "en": "If you want to be happy, be — love everyone, always sacrifice yourself for the happiness of others."
+    },
+    "author": {
+      "zh": "托爾斯泰",
+      "en": "Leo Tolstoy"
+    },
+    "source": {
+      "zh": "托爾斯泰日記",
+      "en": "Tolstoy's Diary"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "只要能不斷向前，就不要害怕痛苦，也不要害怕犯錯。",
+      "en": "Above all, don't lie to yourself. Don't be afraid of your own errors as long as you keep moving forward."
+    },
+    "author": {
+      "zh": "杜斯妥也夫斯基",
+      "en": "Fyodor Dostoevsky"
+    },
+    "source": {
+      "zh": "卡拉馬助夫兄弟們",
+      "en": "The Brothers Karamazov"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "從某個時間點開始，就再也無法回頭了，那個點，就是必須抵達的地方。",
+      "en": "Beyond a certain point there is no return. This point has to be reached."
+    },
+    "author": {
+      "zh": "卡夫卡",
+      "en": "Franz Kafka"
+    },
+    "source": {
+      "zh": "卡夫卡日記",
+      "en": "Kafka's Diaries"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "那是最好的時代，也是最壞的時代。",
+      "en": "It was the best of times, it was the worst of times."
+    },
+    "author": {
+      "zh": "查爾斯·狄更斯",
+      "en": "Charles Dickens"
+    },
+    "source": {
+      "zh": "雙城記",
+      "en": "A Tale of Two Cities"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "簡單，是複雜的極致表現。",
+      "en": "Simplicity is the ultimate sophistication."
+    },
+    "author": {
+      "zh": "達文西",
+      "en": "Leonardo da Vinci"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "學無止境，愈是學習，愈能感受到自己的無知。",
+      "en": "The more you know, the more you realize you don't know."
+    },
+    "author": {
+      "zh": "達文西",
+      "en": "Leonardo da Vinci"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "我夢想著繪畫，然後我畫下我的夢想。",
+      "en": "I dream my painting and I paint my dream."
+    },
+    "author": {
+      "zh": "梵谷",
+      "en": "Vincent van Gogh"
+    },
+    "source": {
+      "zh": "梵谷書信全集",
+      "en": "The Letters of Vincent van Gogh"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "偉大的事，不是憑一時衝動完成的，而是一連串小事串連而成。",
+      "en": "Great things are done by a series of small things brought together."
+    },
+    "author": {
+      "zh": "梵谷",
+      "en": "Vincent van Gogh"
+    },
+    "source": {
+      "zh": "梵谷書信全集",
+      "en": "The Letters of Vincent van Gogh"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "生命的意義，在於找到你的天賦；生命的目的，在於把它交付出去。",
+      "en": "The meaning of life is to find your gift. The purpose of life is to give it away."
+    },
+    "author": {
+      "zh": "畢卡索",
+      "en": "Pablo Picasso"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "腳，要它做什麼？如果我有翅膀能飛。",
+      "en": "Feet, what do I need them for if I have wings to fly?"
+    },
+    "author": {
+      "zh": "芙烈達·卡蘿",
+      "en": "Frida Kahlo"
+    },
+    "source": {
+      "zh": "芙烈達日記",
+      "en": "The Diary of Frida Kahlo"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "做決定最困難的部分，永遠是採取行動的勇氣。",
+      "en": "The most difficult thing is the decision to act; the rest is merely tenacity."
+    },
+    "author": {
+      "zh": "艾蜜莉亞·艾爾哈特",
+      "en": "Amelia Earhart"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "當整個世界沉默時，哪怕一個人的聲音，也會變得強而有力。",
+      "en": "When the whole world is silent, even one voice becomes powerful."
+    },
+    "author": {
+      "zh": "馬拉拉·優薩福扎伊",
+      "en": "Malala Yousafzai"
+    },
+    "source": {
+      "zh": "聯合國青年大會演講，2013",
+      "en": "United Nations Youth Assembly Speech, 2013"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "如果有一本你想讀的書，而它還沒有被寫出來，那麼你就必須成為那個把它寫出來的人。",
+      "en": "If there's a book that you want to read, but it hasn't been written yet, then you must write it."
+    },
+    "author": {
+      "zh": "童妮·摩里森",
+      "en": "Toni Morrison"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "脆弱不是軟弱，它是勇氣最精準的量尺。",
+      "en": "Vulnerability is not weakness; it's our most accurate measure of courage."
+    },
+    "author": {
+      "zh": "布芮尼·布朗",
+      "en": "Brené Brown"
+    },
+    "source": {
+      "zh": "脆弱的力量",
+      "en": "Daring Greatly"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "歸屬感是你與生俱來的權利，而非需要爭取來的東西。",
+      "en": "True belonging doesn't require you to change who you are; it requires you to be who you are."
+    },
+    "author": {
+      "zh": "布芮尼·布朗",
+      "en": "Brené Brown"
+    },
+    "source": {
+      "zh": "我已經夠好了",
+      "en": "Braving the Wilderness"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "沒有路通往幸福，幸福本身就是那條路。",
+      "en": "There is no way to happiness; happiness is the way."
+    },
+    "author": {
+      "zh": "一行禪師",
+      "en": "Thich Nhat Hanh"
+    },
+    "source": {
+      "zh": "當下自在",
+      "en": "Being Peace"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "微笑，就是革命最基本的一步。",
+      "en": "Sometimes your joy is the source of your smile, but sometimes your smile can be the source of your joy."
+    },
+    "author": {
+      "zh": "一行禪師",
+      "en": "Thich Nhat Hanh"
+    },
+    "source": {
+      "zh": "橘子禪",
+      "en": "Peace Is Every Step"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "在你未使潛意識意識化之前，它將主導你的人生，而你會稱之為命運。",
+      "en": "Until you make the unconscious conscious, it will direct your life and you will call it fate."
+    },
+    "author": {
+      "zh": "卡爾·榮格",
+      "en": "Carl Jung"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "你的視野唯有向內審視，才會變得清晰；向外看的人在做夢，向內看的人才是清醒的。",
+      "en": "Your vision will become clear only when you look into your heart. Who looks outside, dreams; who looks inside, awakens."
+    },
+    "author": {
+      "zh": "卡爾·榮格",
+      "en": "Carl Jung"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "預測未來最好的方法，就是親自去創造它。",
+      "en": "The best way to predict the future is to create it."
+    },
+    "author": {
+      "zh": "彼得·杜拉克",
+      "en": "Peter Drucker"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "效率是把事情做對，效能是做對的事情。",
+      "en": "Efficiency is doing things right; effectiveness is doing the right things."
+    },
+    "author": {
+      "zh": "彼得·杜拉克",
+      "en": "Peter Drucker"
+    },
+    "source": {
+      "zh": "有效的管理者",
+      "en": "The Effective Executive"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "有人今天坐在樹蔭下乘涼，是因為很久以前有人種了一棵樹。",
+      "en": "Someone is sitting in the shade today because someone planted a tree a long time ago."
+    },
+    "author": {
+      "zh": "華倫·巴菲特",
+      "en": "Warren Buffett"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "你能踏上最偉大的冒險，就是去活出你夢想中的人生。",
+      "en": "The biggest adventure you can take is to live the life of your dreams."
+    },
+    "author": {
+      "zh": "歐普拉·溫芙蕾",
+      "en": "Oprah Winfrey"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "人生中最重要的兩天，一天是你出生的日子，另一天是你明白自己為何而生的日子。",
+      "en": "The two most important days in your life are the day you are born and the day you find out why."
+    },
+    "author": {
+      "zh": "馬克·吐溫",
+      "en": "Mark Twain"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "二十年後，你會因為沒做過的事，比做過的事更加後悔。所以，解開纜繩，駛離安全的港灣。",
+      "en": "Twenty years from now you will be more disappointed by the things you didn't do than by the ones you did. Sail away from the safe harbor."
+    },
+    "author": {
+      "zh": "馬克·吐溫",
+      "en": "Mark Twain"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "儘管如此，我仍然相信人性本善。",
+      "en": "In spite of everything, I still believe that people are really good at heart."
+    },
+    "author": {
+      "zh": "安妮·法蘭克",
+      "en": "Anne Frank"
+    },
+    "source": {
+      "zh": "安妮日記",
+      "en": "The Diary of a Young Girl"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "你永遠不會太老，以至於無法設定一個新目標，或懷抱一個新夢想。",
+      "en": "You are never too old to set another goal or to dream a new dream."
+    },
+    "author": {
+      "zh": "C.S. 路易斯",
+      "en": "C.S. Lewis"
+    },
+    "source": {
+      "zh": "常被引用的一句話",
+      "en": "Widely attributed saying"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "並非所有流浪的人都迷失了方向。",
+      "en": "Not all those who wander are lost."
+    },
+    "author": {
+      "zh": "托爾金",
+      "en": "J.R.R. Tolkien"
+    },
+    "source": {
+      "zh": "魔戒：魔戒現身",
+      "en": "The Fellowship of the Ring"
+    },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "我們只需要決定，該如何運用被賦予的這段時間。",
+      "en": "All we have to decide is what to do with the time that is given us."
+    },
+    "author": {
+      "zh": "托爾金",
+      "en": "J.R.R. Tolkien"
+    },
+    "source": {
+      "zh": "魔戒：魔戒現身",
+      "en": "The Fellowship of the Ring"
     },
     "isBook": true
   }

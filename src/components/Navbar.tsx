@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         scrolled || mobileOpen ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <div className="relative z-10 max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Logo */}
         <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 cursor-pointer">
           <img
@@ -128,7 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={tab.id}
                 onClick={() => handleMobileTabClick(tab.id)}
-                className={`cursor-pointer rounded-xl px-3 py-3.5 text-left text-2xl font-black transition-colors hover:bg-[#023047]/5 ${
+                className={`cursor-pointer rounded-xl px-3 py-3.5 text-left text-2xl font-black transition-opacity hover:opacity-60 ${
                   activeTab === tab.id ? 'text-[#023047]' : 'text-[#023047]/70'
                 }`}
               >
@@ -140,7 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileOpen(false);
                 onTryFree();
               }}
-              className="cursor-pointer rounded-xl px-3 py-3.5 text-left text-2xl font-black text-[#023047] hover:bg-[#023047]/5"
+              className="cursor-pointer rounded-xl px-3 py-3.5 text-left text-2xl font-black text-[#023047] transition-opacity hover:opacity-60"
             >
               {t.nav.tryFree}
             </button>

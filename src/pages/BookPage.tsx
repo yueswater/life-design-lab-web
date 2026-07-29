@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import type { LayoutContext } from '../components/Layout';
@@ -16,6 +16,10 @@ export default function BookPage() {
   const { lang } = useLanguage();
   const t = useTranslation();
   const [selectedModule, setSelectedModule] = useState<ModuleItem | null>(null);
+
+  useEffect(() => {
+    document.title = `${t.booking.eyebrow} | ${t.footer.brandName}`;
+  }, [t.booking.eyebrow, t.footer.brandName]);
 
   const form = useBookingForm(
     selectedModule,

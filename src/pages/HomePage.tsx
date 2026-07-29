@@ -14,6 +14,10 @@ export default function HomePage() {
   const t = useTranslation();
   const location = useLocation();
 
+  useEffect(() => {
+    document.title = `${t.footer.brandName} | ${t.hero.titleLine1}${t.hero.titleLine2}`;
+  }, [t.footer.brandName, t.hero.titleLine1, t.hero.titleLine2]);
+
   // Module modal state
   const [selectedModule, setSelectedModule] = useState<ModuleItem | null>(null);
   const [modalMode, setModalMode] = useState<'details' | 'booking' | null>(null);
