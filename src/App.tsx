@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { AdminLayout } from './components/AdminLayout';
 import { PageTransition } from './components/PageTransition';
+import { ScrollToTop } from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import BookPage from './pages/BookPage';
@@ -14,6 +15,7 @@ import NotFoundPage from './pages/NotFoundPage';
 export default function App() {
   return (
     <>
+      <ScrollToTop />
       <PageTransition />
 
       <Routes>
