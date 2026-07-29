@@ -1,0 +1,6 @@
+{
+  "name": "生命設計實驗室 Life Design Lab",
+  "description": "生命設計實驗室 Metrics Dashboard - 透過設計思考拆解適合自己的生活方式",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

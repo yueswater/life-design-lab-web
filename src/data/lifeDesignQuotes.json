@@ -1,0 +1,80 @@
+[
+  {
+    "quote": {
+      "zh": "你無法預先把人生中的點點滴滴串連起來，只有在回顧時，你才會明白它們是如何連在一起的。",
+      "en": "You can't connect the dots looking forward; you can only connect them looking backwards."
+    },
+    "author": { "zh": "史蒂夫·賈伯斯", "en": "Steve Jobs" },
+    "source": {
+      "zh": "史丹佛大學畢業典禮演講，2005",
+      "en": "Stanford Commencement Address, 2005"
+    },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "心中有了為何而活的理由，幾乎什麼樣的痛苦都能忍受。",
+      "en": "Those who have a 'why' to live, can bear with almost any 'how'."
+    },
+    "author": { "zh": "維克多·法蘭克", "en": "Viktor Frankl" },
+    "source": { "zh": "活出意義來", "en": "Man's Search for Meaning" },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "在告訴生命你打算拿它做什麼之前，先聽聽它打算拿你做什麼。",
+      "en": "Before you tell your life what you intend to do with it, listen for what it intends to do with you."
+    },
+    "author": { "zh": "帕克·帕爾默", "en": "Parker Palmer" },
+    "source": { "zh": "讓生命發聲", "en": "Let Your Life Speak" },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "別問這世界需要什麼，問問是什麼讓你感到活著，然後去做。因為這世界需要的，正是活過來的人。",
+      "en": "Don't ask what the world needs. Ask what makes you come alive, and go do it. Because what the world needs is people who have come alive."
+    },
+    "author": { "zh": "霍華德·瑟曼", "en": "Howard Thurman" },
+    "source": { "zh": "常被引用的一句話", "en": "Widely attributed saying" },
+    "isBook": false
+  },
+  {
+    "quote": {
+      "zh": "知之者不如好之者，好之者不如樂之者。",
+      "en": "They who know it are not equal to those who love it, and they who love it are not equal to those who delight in it."
+    },
+    "author": { "zh": "孔子", "en": "Confucius" },
+    "source": { "zh": "論語·雍也", "en": "The Analects" },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "千里之行，始於足下。",
+      "en": "A journey of a thousand miles begins with a single step."
+    },
+    "author": { "zh": "老子", "en": "Laozi" },
+    "source": { "zh": "道德經", "en": "Tao Te Ching" },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "吾生也有涯，而知也無涯。",
+      "en": "My life has a limit, but knowledge has none."
+    },
+    "author": { "zh": "莊子", "en": "Zhuangzi" },
+    "source": { "zh": "莊子·養生主", "en": "Zhuangzi" },
+    "isBook": true
+  },
+  {
+    "quote": {
+      "zh": "沒有什麼比心中藏著一個未曾說出口的故事更折磨人了。",
+      "en": "There is no greater agony than bearing an untold story inside you."
+    },
+    "author": { "zh": "瑪雅·安傑洛", "en": "Maya Angelou" },
+    "source": {
+      "zh": "我知道籠中鳥為何歌唱",
+      "en": "I Know Why the Caged Bird Sings"
+    },
+    "isBook": true
+  }
+]

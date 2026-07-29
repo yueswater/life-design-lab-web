@@ -1,0 +1,25 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1024"
+  height="1024"
+  viewBox="0 0 1024 1024"
+  fill="none"
+  role="img"
+  aria-labelledby="favicon-title favicon-desc"
+>
+  <title id="favicon-title">Life Design Lab paper plane icon</title>
+  <desc id="favicon-desc">
+    A deep-space-blue and royal-gold paper plane flying toward a four-point gold star.
+  </desc>
+  <path d="M85 430L721 205L319 570L85 430Z" fill="#023047" />
+  <path d="M337 575L452 681L337 792V575Z" fill="#023047" />
+  <path d="M338 575L728 205L442 776L338 575Z" fill="#FFDF65" />
+  <path
+    d="M828 117
+       C832 166 849 183 898 187
+       C849 191 832 208 828 257
+       C824 208 807 191 758 187
+       C807 183 824 166 828 117Z"
+    fill="#FFDF65"
+  />
+</svg>
