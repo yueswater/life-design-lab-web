@@ -93,7 +93,7 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
       className="relative w-full"
       style={{ height: `${total * 100}vh` }}
     >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pb-[10vh]">
+      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pt-20 pb-[3vh] sm:pt-24">
         {/* Section Header */}
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-8">
           {/* <p className="mb-2 text-xs font-black uppercase tracking-[0.24em] text-[#023047]/60">

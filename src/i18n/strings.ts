@@ -94,6 +94,11 @@ export interface Strings {
     slotTaken: string;
     submitFailed: string;
   };
+  notFound: {
+    title: string;
+    message: string;
+    redirecting: (seconds: number) => string;
+  };
 }
 
 const strings: Record<'zh' | 'en', Strings> = {
@@ -191,6 +196,11 @@ const strings: Record<'zh' | 'en', Strings> = {
       slotTaken: '這個時段剛被別人預約走了，換一個時段試試。',
       submitFailed: '預約送出失敗，請稍後再試。',
     },
+    notFound: {
+      title: '找不到這個頁面',
+      message: '你要找的頁面不存在，或已經被移動了。',
+      redirecting: (seconds: number) => `${seconds} 秒後自動返回首頁`,
+    },
   },
   en: {
     nav: {
@@ -287,6 +297,11 @@ const strings: Record<'zh' | 'en', Strings> = {
       slotsFetchFailed: 'Could not load available slots for that date. Please try again.',
       slotTaken: 'That slot was just booked by someone else — please pick another time.',
       submitFailed: 'Could not submit your booking. Please try again.',
+    },
+    notFound: {
+      title: 'Page not found',
+      message: "The page you're looking for doesn't exist, or has been moved.",
+      redirecting: (seconds: number) => `Redirecting to home in ${seconds}s`,
     },
   },
 };
