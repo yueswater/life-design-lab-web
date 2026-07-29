@@ -162,8 +162,17 @@ body {
   background-color: #fdf1c4;
 }
 
-.ldl-calendar .react-calendar__tile--now {
+.ldl-calendar .react-calendar__tile--now::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 9999px;
   box-shadow: inset 0 0 0 1.5px #fbd634;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
 }
 
 .ldl-calendar .react-calendar__tile--active {
