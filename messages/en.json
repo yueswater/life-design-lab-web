@@ -8,14 +8,22 @@
     "services": "Services",
     "blog": "Articles",
     "bookingCta": "Free 30-min chat",
-    "about": "About Me"
+    "about": "About Me",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "Switch language"
   },
   "intro": {
     "label": "Introduction",
     "headingPrimary": "",
     "headingAccent": "Life Design Lab",
     "body": "Life Design means treating your own life as a design problem to solve, using Design Thinking to work out a way of living that actually fits you.",
-    "highlight": "If you don't design your own life, <hl>you're left accepting whatever standardized life template society hands you</hl>, living a mass-produced, canned version of life. But everyone is a unique individual, and forcing a one-size-fits-all template never quite fits. So I drew on multiple books, synthesized different frameworks, and built <hl>a life design process of my own</hl> that has already helped many people find direction, take the wheel, and start living a life they actually love!"
+    "highlight": "If you don't design your own life, <hl>you're left accepting whatever standardized life template society hands you</hl>, living a mass-produced, canned version of life. But everyone is a unique individual, and forcing a one-size-fits-all template never quite fits. So I drew on multiple books, synthesized different frameworks, and built <hl>a life design process of my own</hl> that has already helped many people find direction, take the wheel, and start living a life they actually love!",
+    "features": [
+      "A life design process of your own",
+      "Design Thinking methods",
+      "Start living a life you love"
+    ]
   },
   "testimonials": {
     "heading": "What clients say",
@@ -34,6 +42,9 @@
     "hint": "Click a card to see the full details",
     "viewDetail": "View details",
     "bookNow": "Book a free chat",
+    "previous": "Previous service",
+    "next": "Next service",
+    "counter": "Service {current} / {total}",
     "items": {
       "one-on-one": {
         "title": "1:1 Coaching",
@@ -96,11 +107,11 @@
     "notesLabel": "What would you like to discuss? (optional)",
     "notesPlaceholder": "e.g. I want to understand the 1:1 coaching process, I'm stuck in my career... (helps me prepare)",
     "submitting": "Submitting...",
-    "submitCta": "🎉 Book your free 30-minute chat",
-    "msgPickSlotFirst": "❌ Please pick a time slot first!",
-    "msgSlotTaken": "⚠️ That slot was just booked by someone else — please pick another!",
-    "msgSuccess": "🎉 Booking confirmed! We'll reach out through the contact info you provided.",
-    "msgFailure": "❌ Booking failed: {message}"
+    "submitCta": "Book your free 30-minute chat",
+    "msgPickSlotFirst": "Please pick a time slot first!",
+    "msgSlotTaken": "That slot was just booked by someone else — please pick another!",
+    "msgSuccess": "Booking confirmed! We'll reach out through the contact info you provided.",
+    "msgFailure": "Booking failed: {message}"
   },
   "about": {
     "roles": "Life Designer / Author / Public Speaker / English Teacher / Painter",
@@ -115,7 +126,7 @@
     "quote": "If you don't design your own life, you're left accepting whatever standardized life template society hands you — living a canned life.",
     "paragraph1": "Hi, I'm Min. I used to feel lost and drained chasing the standard answers society hands you. It wasn't until I brought systems-engineering logic and an experimental mindset into my own life, breaking it down and redesigning it, that I realized I could live in a lot of different ways.",
     "paragraph2": "Life Design Lab didn't just pull me out of that rut — over the past two years it's also helped many participants write a new chapter for their lives. That's why I want to share it more widely, so we can all live out a life story that's truly our own.",
-    "igLine": "🌐 For more everyday notes and the latest events, find me on Instagram:"
+    "igLine": "For more everyday notes and the latest events, find me on Instagram:"
   },
   "footer": {
     "copyright": "© {year} Life Design Lab. All rights reserved."
@@ -132,7 +143,7 @@
     "pricingLabel": "Pricing",
     "ctaHeading": "Not sure which option is right for you?",
     "ctaBody": "Book a free 30-minute chat and let's clarify the right direction together!",
-    "ctaButton": "Book a free 30-min chat →",
+    "ctaButton": "Book a free 30-min chat",
     "items": {
       "one-on-one": {
         "title": "1:1 Coaching",

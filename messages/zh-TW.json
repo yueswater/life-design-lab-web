@@ -8,14 +8,22 @@
     "services": "服務內容",
     "blog": "文章專欄",
     "bookingCta": "免費 30mins 諮詢",
-    "about": "關於我"
+    "about": "關於我",
+    "openMenu": "開啟選單",
+    "closeMenu": "關閉選單",
+    "switchLanguage": "切換語言"
   },
   "intro": {
     "label": "Introduction",
     "headingPrimary": "生命設計實驗室",
     "headingAccent": "Life Design Lab",
     "body": "生命設計（Life Design），是把自己的生命當作一個待解決的「設計問題」，透過設計思考 (Design Thinking) 的方法拆解適合自己的生活方式。",
-    "highlight": "如果不設計自己的人生，<hl>我們只能接受這個社會標準化的各種生命模型</hl>，只能過著在社會架上的罐頭人生。但是，每個人都是獨立又特別的個體，將標準化的方式直接套用總是會感覺不舒適、不順暢。因此，我結合了多本書籍，統整了各種方法論，建立了一套<hl>專屬的生命設計流程</hl>，這套架構也已經幫助了許多人找到生命方向，開始掌舵並啟動自己喜歡的人生！"
+    "highlight": "如果不設計自己的人生，<hl>我們只能接受這個社會標準化的各種生命模型</hl>，只能過著在社會架上的罐頭人生。但是，每個人都是獨立又特別的個體，將標準化的方式直接套用總是會感覺不舒適、不順暢。因此，我結合了多本書籍，統整了各種方法論，建立了一套<hl>專屬的生命設計流程</hl>，這套架構也已經幫助了許多人找到生命方向，開始掌舵並啟動自己喜歡的人生！",
+    "features": [
+      "專屬生命設計流程",
+      "設計思考方法",
+      "啟動自己喜歡的人生"
+    ]
   },
   "testimonials": {
     "heading": "學員體驗分享",
@@ -34,6 +42,9 @@
     "hint": "點擊卡片查看詳細內容介紹",
     "viewDetail": "查看詳細介紹",
     "bookNow": "免費預約了解",
+    "previous": "上一個服務",
+    "next": "下一個服務",
+    "counter": "服務 {current} / {total}",
     "items": {
       "one-on-one": {
         "title": "一對一諮詢",
@@ -96,11 +107,11 @@
     "notesLabel": "你想討論或了解的主題（選填）",
     "notesPlaceholder": "例如：想了解一對一諮詢流程、目前遇到職涯瓶頸...（方便我提前準備）",
     "submitting": "送出預約中...",
-    "submitCta": "🎉 免費預約 30 分鐘聊聊",
-    "msgPickSlotFirst": "❌ 請先點選預約時間！",
-    "msgSlotTaken": "⚠️ 該時段剛好已被他人預約，請選擇其他時段！",
-    "msgSuccess": "🎉 預約成功！我們將會透過您提供的聯絡方式與您確認時間。",
-    "msgFailure": "❌ 預約失敗: {message}"
+    "submitCta": "免費預約 30 分鐘聊聊",
+    "msgPickSlotFirst": "請先點選預約時間！",
+    "msgSlotTaken": "該時段剛好已被他人預約，請選擇其他時段！",
+    "msgSuccess": "預約成功！我們將會透過您提供的聯絡方式與您確認時間。",
+    "msgFailure": "預約失敗: {message}"
   },
   "about": {
     "roles": "生命設計師 / 作家 / 公開演講者 / 英語教師 / 畫家",
@@ -115,7 +126,7 @@
     "quote": "「如果不設計自己的人生，我們只能接受這個社會標準化的各種生命模型，過著罐頭人生。」",
     "paragraph1": "哈囉，我是 Min。曾經我也在社會給予的標準答案上感到迷惘與內耗。直到我開始將系統工程的邏輯與實驗思維導入生活，重新拆解解決設計人生，才發現我可以活出很多不同樣子。",
     "paragraph2": "生命設計實驗室 Life Design Lab 不只將我自己脫出泥沼，也在這兩年協助了多位學員展開新人生的腳本，因此我希望可以把這樣的好東西，分享給大家，一起活出專屬自己的人生劇本！",
-    "igLine": "🌐 看更多日常隨筆或最新活動，我的 Instagram："
+    "igLine": "看更多日常隨筆或最新活動，我的 Instagram："
   },
   "footer": {
     "copyright": "© {year} Life Design Lab 生命設計實驗室. All rights reserved."
@@ -132,7 +143,7 @@
     "pricingLabel": "Pricing",
     "ctaHeading": "想知道哪一個方案最適合你嗎？",
     "ctaBody": "歡迎先預約 30 分鐘免費諮詢與聊聊，我們一起釐清方向！",
-    "ctaButton": "免費預約 30mins 諮詢 →",
+    "ctaButton": "免費預約 30mins 諮詢",
     "items": {
       "one-on-one": {
         "title": "一對一諮詢",
