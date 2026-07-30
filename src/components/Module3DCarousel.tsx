@@ -278,12 +278,14 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
           </div>
         </div>
 
-        {/* Hint */}
-        <div className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-8">
-          <p className="text-center text-xs font-bold text-[#023047]/55">
-            {t.modules.hint}
-          </p>
-        </div>
+        {/* Hint: only meaningful for the desktop wheel/keyboard interaction */}
+        {!isMobile && (
+          <div className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-8">
+            <p className="text-center text-xs font-bold text-[#023047]/55">
+              {t.modules.hint}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
