@@ -28,8 +28,20 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
   const progressIndex = progress * (total - 1); // fractional card position
   const currentIndex = Math.round(progressIndex);
 
-  // Vertical page scroll inside the tall section drives the horizontal strip
+  // Mobile drops the vertical-scroll-jack in favor of a plain horizontal
+  // swipe on the filmstrip itself — matches the `sm` breakpoint used below.
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
+    const mql = window.matchMedia('(max-width: 639px)');
+    const update = () => setIsMobile(mql.matches);
+    update();
+    mql.addEventListener('change', update);
+    return () => mql.removeEventListener('change', update);
+  }, []);
+
+  // Desktop: vertical page scroll inside the tall section drives the strip
+  useEffect(() => {
+    if (isMobile) return;
     const update = () => {
       const el = sectionRef.current;
       const viewport = viewportRef.current;
@@ -48,14 +60,44 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, []);
+  }, [isMobile]);
 
-  // Keyboard / click navigation scrolls the page to the matching progress
+  // Mobile: native horizontal scroll on the viewport drives progress instead
+  useEffect(() => {
+    if (!isMobile) return;
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const update = () => {
+      const scrollable = viewport.scrollWidth - viewport.clientWidth;
+      const p = scrollable > 0 ? Math.min(Math.max(viewport.scrollLeft / scrollable, 0), 1) : 0;
+      setProgress(p);
+    };
+    update();
+    viewport.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      viewport.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [isMobile]);
+
+  // Keyboard / click navigation: scrolls the page (desktop) or the
+  // filmstrip itself (mobile) to bring the target card into view.
   const scrollToIndex = useCallback(
     (idx: number) => {
+      const clamped = Math.min(Math.max(idx, 0), total - 1);
+
+      if (isMobile) {
+        const viewport = viewportRef.current;
+        const track = trackRef.current;
+        const card = track?.children[clamped] as HTMLElement | undefined;
+        if (!viewport || !card) return;
+        viewport.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
+        return;
+      }
+
       const el = sectionRef.current;
       if (!el) return;
-      const clamped = Math.min(Math.max(idx, 0), total - 1);
       const scrollable = el.offsetHeight - window.innerHeight;
       const top =
         el.getBoundingClientRect().top +
@@ -63,7 +105,7 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
         (clamped / (total - 1)) * scrollable;
       window.scrollTo({ top, behavior: 'smooth' });
     },
-    [total]
+    [total, isMobile]
   );
 
   useEffect(() => {
@@ -86,14 +128,21 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
   }, [scrollToIndex, currentIndex]);
 
   return (
-    /* Tall scroll track: vertical scroll drives the pinned horizontal filmstrip */
+    /* Desktop: tall scroll track, vertical scroll drives the pinned filmstrip.
+       Mobile: natural height, the filmstrip scrolls horizontally on its own. */
     <section
       id="modules"
       ref={sectionRef}
       className="relative w-full"
-      style={{ height: `${total * 100}vh` }}
+      style={{ height: isMobile ? 'auto' : `${total * 100}vh` }}
     >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pt-20 pb-[3vh] sm:pt-24">
+      <div
+        className={
+          isMobile
+            ? 'flex flex-col bg-white pt-20 pb-10'
+            : 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pt-20 pb-[3vh] sm:pt-24'
+        }
+      >
         {/* Section Header */}
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-8">
           {/* <p className="mb-2 text-xs font-black uppercase tracking-[0.24em] text-[#023047]/60">
@@ -106,11 +155,18 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
         </div>
 
         {/* Horizontal Filmstrip */}
-        <div ref={viewportRef} className="mt-4 overflow-hidden sm:mt-6">
+        <div
+          ref={viewportRef}
+          className={
+            isMobile
+              ? 'mt-4 scrollbar-hide overflow-x-auto snap-x snap-mandatory'
+              : 'mt-4 overflow-hidden sm:mt-6'
+          }
+        >
           <div
             ref={trackRef}
             className="flex w-max items-stretch gap-10 px-4 sm:gap-16 sm:px-8"
-            style={{ transform: `translate3d(-${shift}px, 0, 0)` }}
+            style={isMobile ? undefined : { transform: `translate3d(-${shift}px, 0, 0)` }}
           >
             {modules.map((item, idx) => {
               const ModuleIcon = MODULE_ICON_MAP[item.iconKey];
@@ -122,7 +178,7 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
                   onClick={() => {
                     if (idx !== currentIndex) scrollToIndex(idx);
                   }}
-                  className={`flex w-[82vw] flex-col sm:w-[60vw] lg:w-[36rem] ${idx === currentIndex ? '' : 'cursor-pointer'
+                  className={`flex w-[82vw] flex-col snap-start sm:w-[60vw] lg:w-[36rem] ${idx === currentIndex ? '' : 'cursor-pointer'
                     }`}
                 >
                   {/* Title Row */}

@@ -60,7 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         scrolled || mobileOpen ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}
     >
-      <div className="relative z-10 max-w-7xl mx-auto flex items-center justify-between">
+      <div className="relative z-50 max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Logo */}
         <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 cursor-pointer">
           <img
