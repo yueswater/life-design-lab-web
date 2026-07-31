@@ -39,7 +39,14 @@ const ArticleImageView: React.FC<NodeViewProps> = (props) => {
         alt={node.attrs.alt ?? ''}
         className="mx-auto max-h-[480px] rounded-xl object-contain"
       />
-      <figcaption className="mt-2 text-center text-xs font-medium text-slate-500">
+      <figcaption
+        className="mt-2 text-center text-xs font-medium text-slate-500"
+        // Marks this subtree as outside ProseMirror's editable document, so
+        // the nested <input> handles its own native IME composition (e.g.
+        // Zhuyin) instead of having each keystroke intercepted/committed by
+        // ProseMirror before composition finishes.
+        contentEditable={false}
+      >
         <span className="font-semibold text-slate-600">
           {prefix} {number}
         </span>

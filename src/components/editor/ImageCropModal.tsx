@@ -23,7 +23,8 @@ type Handle = 'nw' | 'ne' | 'sw' | 'se';
 export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, onConfirm }) => {
   const [imgEl, setImgEl] = useState<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [displayW, setDisplayW] = useState(0);
+  const displayImgRef = useRef<HTMLImageElement>(null);
+  const [displaySize, setDisplaySize] = useState({ w: 0, h: 0 });
   const [box, setBox] = useState({ x: 0, y: 0, w: 0, h: 0 });
   const dragState = useRef<
     | { mode: 'move'; startX: number; startY: number; boxX: number; boxY: number }
@@ -39,22 +40,31 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
     return () => URL.revokeObjectURL(url);
   }, [file]);
 
+  // Measure the *actual rendered* <img> box directly — deriving height from
+  // naturalHeight/naturalWidth * displayW looks equivalent on paper, but any
+  // rounding or layout quirk between the two makes the crop box drift off
+  // the real image edges. Reading the live box is the only way to guarantee
+  // they always match.
   useLayoutEffect(() => {
-    const el = containerRef.current;
+    const el = displayImgRef.current;
     if (!el) return;
-    const update = () => setDisplayW(el.getBoundingClientRect().width);
+    const update = () => {
+      const rect = el.getBoundingClientRect();
+      setDisplaySize({ w: rect.width, h: rect.height });
+    };
     update();
     const observer = new ResizeObserver(update);
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [imgEl]);
 
-  const displayH = imgEl ? displayW * (imgEl.naturalHeight / imgEl.naturalWidth) : 0;
+  const displayW = displaySize.w;
+  const displayH = displaySize.h;
 
   // Set the initial box (largest 16:9 rect that fits, centered) whenever the
   // image or display size changes.
   useEffect(() => {
-    if (!imgEl || displayW === 0) return;
+    if (!imgEl || displayW === 0 || displayH === 0) return;
     let w = displayW;
     let h = w / ASPECT;
     if (h > displayH) {
@@ -64,7 +74,7 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
     setBox({ x: (displayW - w) / 2, y: (displayH - h) / 2, w, h });
   }, [imgEl, displayW, displayH]);
 
-  if (!imgEl || displayW === 0) {
+  if (!imgEl) {
     return (
       <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-900/50 p-4">
         <div
@@ -183,7 +193,13 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
           onPointerUp={handlePointerUp}
           onPointerLeave={handlePointerUp}
         >
-          <img src={imgEl.src} alt="" draggable={false} className="block w-full select-none" />
+          <img
+            ref={displayImgRef}
+            src={imgEl.src}
+            alt=""
+            draggable={false}
+            className="block w-full select-none"
+          />
 
           {/* Dimmed mask outside the crop box, built from 4 rectangles so the
               box itself stays fully clear (no overlay blocking the view). */}
