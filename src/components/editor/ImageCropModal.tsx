@@ -7,19 +7,29 @@ interface ImageCropModalProps {
   onConfirm: (blob: Blob) => void;
 }
 
-const ASPECT = 16 / 9;
-const OUTPUT_W = 1200;
-const OUTPUT_H = Math.round(OUTPUT_W / ASPECT);
 const MIN_BOX = 60;
+const MAX_OUTPUT_DIMENSION = 1600;
 
-type Handle = 'nw' | 'ne' | 'sw' | 'se';
+type Handle = 'nw' | 'ne' | 'sw' | 'se' | 'n' | 's' | 'e' | 'w';
+
+const HANDLES: { id: Handle; cursor: string }[] = [
+  { id: 'nw', cursor: 'nwse-resize' },
+  { id: 'ne', cursor: 'nesw-resize' },
+  { id: 'sw', cursor: 'nesw-resize' },
+  { id: 'se', cursor: 'nwse-resize' },
+  { id: 'n', cursor: 'ns-resize' },
+  { id: 's', cursor: 'ns-resize' },
+  { id: 'e', cursor: 'ew-resize' },
+  { id: 'w', cursor: 'ew-resize' },
+];
 
 // Shows the whole image at its own natural aspect ratio (never stretched
-// into a fixed viewport), with a crop box overlaid on top. Drag inside the
-// box to move it; drag a corner handle to resize (aspect-locked to 16:9,
-// growing/shrinking from the opposite corner) — same interaction as Canva's
-// aspect-locked crop. Export crops straight from the source image via
-// canvas drawImage's source-rect, scaled to a fixed 1200x675 output.
+// into a fixed viewport), with a freeform crop box overlaid on top. Drag
+// inside the box to move it; drag a corner to resize both dimensions, or an
+// edge to resize just width or height — same interaction as Canva's
+// freeform crop, width and height are always independent. Export crops
+// straight from the source image via canvas drawImage's source-rect, at the
+// box's own aspect ratio (capped to a sane max resolution).
 export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, onConfirm }) => {
   const [imgEl, setImgEl] = useState<HTMLImageElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -61,16 +71,11 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
   const displayW = displaySize.w;
   const displayH = displaySize.h;
 
-  // Set the initial box (largest 16:9 rect that fits, centered) whenever the
-  // image or display size changes.
+  // Initial box: 80% of the image, centered.
   useEffect(() => {
     if (!imgEl || displayW === 0 || displayH === 0) return;
-    let w = displayW;
-    let h = w / ASPECT;
-    if (h > displayH) {
-      h = displayH;
-      w = h * ASPECT;
-    }
+    const w = displayW * 0.8;
+    const h = displayH * 0.8;
     setBox({ x: (displayW - w) / 2, y: (displayH - h) / 2, w, h });
   }, [imgEl, displayW, displayH]);
 
@@ -115,26 +120,32 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
       return;
     }
 
-    // Resize: width driven by horizontal distance from the fixed opposite
-    // corner, height derived to keep the 16:9 aspect ratio.
+    const { handle, anchorX, anchorY } = drag;
     const mouseX = Math.min(Math.max(e.clientX - rect.left, 0), displayW);
-    const leftSide = drag.handle.includes('w');
-    const topSide = drag.handle.includes('n');
+    const mouseY = Math.min(Math.max(e.clientY - rect.top, 0), displayH);
+    const affectsX = handle !== 'n' && handle !== 's';
+    const affectsY = handle !== 'e' && handle !== 'w';
+    const leftSide = handle.includes('w');
+    const topSide = handle.includes('n');
 
-    let w = Math.abs(mouseX - drag.anchorX);
-    w = Math.max(w, MIN_BOX);
-    // Clamp so the box stays inside the image on both axes.
-    const maxWByX = leftSide ? drag.anchorX : displayW - drag.anchorX;
-    w = Math.min(w, maxWByX);
-    let h = w / ASPECT;
-    const maxHByY = topSide ? drag.anchorY : displayH - drag.anchorY;
-    if (h > maxHByY) {
-      h = maxHByY;
-      w = h * ASPECT;
+    let w = box.w;
+    let h = box.h;
+    let x = box.x;
+    let y = box.y;
+
+    if (affectsX) {
+      w = Math.max(Math.abs(mouseX - anchorX), MIN_BOX);
+      const maxW = leftSide ? anchorX : displayW - anchorX;
+      w = Math.min(w, maxW);
+      x = leftSide ? anchorX - w : anchorX;
+    }
+    if (affectsY) {
+      h = Math.max(Math.abs(mouseY - anchorY), MIN_BOX);
+      const maxH = topSide ? anchorY : displayH - anchorY;
+      h = Math.min(h, maxH);
+      y = topSide ? anchorY - h : anchorY;
     }
 
-    const x = leftSide ? drag.anchorX - w : drag.anchorX;
-    const y = topSide ? drag.anchorY - h : drag.anchorY;
     setBox({ x, y, w, h });
   };
 
@@ -149,12 +160,16 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
     const sourceW = box.w * scale;
     const sourceH = box.h * scale;
 
+    const outputScale = Math.min(1, MAX_OUTPUT_DIMENSION / Math.max(sourceW, sourceH));
+    const outputW = Math.round(sourceW * outputScale);
+    const outputH = Math.round(sourceH * outputScale);
+
     const canvas = document.createElement('canvas');
-    canvas.width = OUTPUT_W;
-    canvas.height = OUTPUT_H;
+    canvas.width = outputW;
+    canvas.height = outputH;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
-    ctx.drawImage(imgEl, sourceX, sourceY, sourceW, sourceH, 0, 0, OUTPUT_W, OUTPUT_H);
+    ctx.drawImage(imgEl, sourceX, sourceY, sourceW, sourceH, 0, 0, outputW, outputH);
     canvas.toBlob(
       (blob) => {
         if (blob) onConfirm(blob);
@@ -164,12 +179,26 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
     );
   };
 
-  const handles: { id: Handle; cursor: string; style: React.CSSProperties }[] = [
-    { id: 'nw', cursor: 'nwse-resize', style: { left: box.x, top: box.y } },
-    { id: 'ne', cursor: 'nesw-resize', style: { left: box.x + box.w, top: box.y } },
-    { id: 'sw', cursor: 'nesw-resize', style: { left: box.x, top: box.y + box.h } },
-    { id: 'se', cursor: 'nwse-resize', style: { left: box.x + box.w, top: box.y + box.h } },
-  ];
+  const handleStyle = (id: Handle): React.CSSProperties => {
+    switch (id) {
+      case 'nw':
+        return { left: box.x, top: box.y };
+      case 'ne':
+        return { left: box.x + box.w, top: box.y };
+      case 'sw':
+        return { left: box.x, top: box.y + box.h };
+      case 'se':
+        return { left: box.x + box.w, top: box.y + box.h };
+      case 'n':
+        return { left: box.x + box.w / 2, top: box.y };
+      case 's':
+        return { left: box.x + box.w / 2, top: box.y + box.h };
+      case 'w':
+        return { left: box.x, top: box.y + box.h / 2 };
+      case 'e':
+        return { left: box.x + box.w, top: box.y + box.h / 2 };
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-900/50 p-4">
@@ -222,17 +251,19 @@ export const ImageCropModal: React.FC<ImageCropModalProps> = ({ file, onCancel, 
             style={{ left: box.x, top: box.y, width: box.w, height: box.h }}
           />
 
-          {handles.map((h) => (
+          {HANDLES.map((h) => (
             <div
               key={h.id}
               onPointerDown={startResize(h.id)}
               className="absolute h-4 w-4 touch-none rounded-full border-2 border-[#FBD634] bg-white shadow"
-              style={{ ...h.style, marginLeft: -8, marginTop: -8, cursor: h.cursor }}
+              style={{ ...handleStyle(h.id), marginLeft: -8, marginTop: -8, cursor: h.cursor }}
             />
           ))}
         </div>
 
-        <p className="mt-3 text-center text-xs text-slate-400">拖曳裁切框調整位置，拖曳四角調整大小</p>
+        <p className="mt-3 text-center text-xs text-slate-400">
+          拖曳裁切框調整位置，拖曳邊角調整大小，拖曳邊線可單獨調整寬或高
+        </p>
 
         <div className="mt-4 flex items-center gap-2">
           <button
