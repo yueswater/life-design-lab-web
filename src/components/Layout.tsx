@@ -5,6 +5,7 @@ import { initialLabMetrics } from '../data/labMetricsData';
 import { Navbar } from './Navbar';
 import { Modals } from './Modals';
 import { SiteFooter } from './SiteFooter';
+import { CookieConsentBanner } from './CookieConsentBanner';
 import { CheckCircle } from 'lucide-react';
 
 export interface LayoutContext {
@@ -57,6 +58,10 @@ export const Layout: React.FC = () => {
       navigate('/about');
       return;
     }
+    if (tab === 'articles') {
+      navigate('/articles');
+      return;
+    }
     if (location.pathname !== '/') {
       navigate('/', { state: { scrollTo: tab } });
       return;
@@ -96,6 +101,7 @@ export const Layout: React.FC = () => {
       </div>
 
       <SiteFooter />
+      <CookieConsentBanner />
 
       {/* Interactive Global Modals */}
       <Modals

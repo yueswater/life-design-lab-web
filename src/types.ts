@@ -55,4 +55,42 @@ export interface Metric {
   quoteDescription?: string;
 }
 
-export type NavTab = 'modules' | 'testimonials' | 'about';
+export type NavTab = 'articles' | 'modules' | 'testimonials' | 'about';
+
+// A Tiptap document — kept loose since we only ever pass it straight to/from
+// the editor and the API, never inspect its shape on this side.
+export type TiptapDoc = Record<string, unknown>;
+
+export type ArticleStatus = 'draft' | 'published' | 'archived';
+
+export interface ArticleSummary {
+  id: string;
+  slug: string;
+  titleZh: string;
+  titleEn: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  coverImageUrl: string | null;
+  viewCount: number;
+  publishedAt: string | null;
+}
+
+export interface ArticleDetail {
+  id: string;
+  slug: string;
+  titleZh: string;
+  titleEn: string;
+  descriptionZh: string;
+  descriptionEn: string;
+  contentZh: TiptapDoc;
+  contentEn: TiptapDoc;
+  coverImageUrl: string | null;
+  viewCount: number;
+  publishedAt: string | null;
+}
+
+export interface AdminArticle extends ArticleDetail {
+  status: ArticleStatus;
+  createdAt: string;
+  updatedAt: string;
+}

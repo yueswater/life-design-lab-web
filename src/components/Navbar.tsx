@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
   const tabs: { id: NavTab; label: string }[] = [
+    { id: 'articles', label: t.nav.articles },
     { id: 'testimonials', label: t.nav.testimonials },
     { id: 'modules', label: t.nav.modules },
     { id: 'about', label: t.nav.about },

@@ -2,6 +2,7 @@ import { useLanguage } from './LanguageContext';
 
 export interface Strings {
   nav: {
+    articles: string;
     modules: string;
     testimonials: string;
     about: string;
@@ -104,6 +105,7 @@ export interface Strings {
 const strings: Record<'zh' | 'en', Strings> = {
   zh: {
     nav: {
+      articles: '專欄文章',
       modules: '核心模組',
       testimonials: '學員評價',
       about: '關於 Min',
@@ -204,6 +206,7 @@ const strings: Record<'zh' | 'en', Strings> = {
   },
   en: {
     nav: {
+      articles: 'Articles',
       modules: 'Modules',
       testimonials: 'Testimonials',
       about: 'About Min',

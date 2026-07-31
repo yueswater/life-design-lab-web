@@ -165,7 +165,7 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
         >
           <div
             ref={trackRef}
-            className="flex w-max items-stretch gap-10 px-4 sm:gap-16 sm:px-8"
+            className="flex w-max items-stretch gap-0 px-4 sm:px-8"
             style={isMobile ? undefined : { transform: `translate3d(-${shift}px, 0, 0)` }}
           >
             {modules.map((item, idx) => {

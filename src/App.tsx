@@ -11,6 +11,8 @@ import PrivacyPage from './pages/PrivacyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
 import NotFoundPage from './pages/NotFoundPage';
+import ArticlesPage from './pages/ArticlesPage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
+          <Route path="articles" element={<ArticlesPage />} />
+          <Route path="articles/:slug" element={<ArticleDetailPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="book" element={<BookPage />} />
           <Route path="terms" element={<TermsPage />} />

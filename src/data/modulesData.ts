@@ -76,13 +76,11 @@ export const modulesData: ModuleItem[] = [
     },
     features: {
       zh: [
-        '生命手札實物工具卡牌演練',
         '跨領域夥伴激盪多元創意視野',
         '好時光能量日誌分析與診斷',
         '現場教練即時反饋與原型修正',
       ],
       en: [
-        'Hands-on practice with the Life Journal card deck',
         'Cross-disciplinary peers spark diverse ideas',
         'Good Time Journal analysis and diagnosis',
         'Live coach feedback and prototype iteration',

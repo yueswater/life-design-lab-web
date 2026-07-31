@@ -7,10 +7,13 @@ const VISIBLE_DURATION_MS = 2000;
 
 // Mirrors the top-level paths registered in App.tsx — anything else resolves
 // to the 404 page, which shouldn't get the plane/quote moment.
-const KNOWN_PATHS = new Set(['', 'about', 'book', 'terms', 'privacy', 'admin', 'admin/login']);
+const KNOWN_PATHS = new Set(['', 'articles', 'about', 'book', 'terms', 'privacy', 'admin', 'admin/login']);
 
 function isKnownRoute(pathname: string): boolean {
-  return KNOWN_PATHS.has(pathname.replace(/^\/|\/$/g, ''));
+  const trimmed = pathname.replace(/^\/|\/$/g, '');
+  if (KNOWN_PATHS.has(trimmed)) return true;
+  if (trimmed.startsWith('articles/')) return true;
+  return false;
 }
 
 // Plays a paper-plane + life-design-quote moment, centered on screen over a

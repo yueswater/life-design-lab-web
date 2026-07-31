@@ -1,10 +1,14 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Loader2, LogIn } from 'lucide-react';
 import { adminLogin } from '../lib/admin-api';
 
 export default function AdminLoginPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = '生命設計實驗室 | 管理登入';
+  }, []);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
