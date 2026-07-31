@@ -218,7 +218,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
         {/* Cover image */}
         <div className="mt-6">
           <p className="mb-1.5 text-xs font-bold uppercase tracking-wide text-slate-400">封面圖</p>
-          <label className="flex h-36 w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl border border-dashed border-slate-300 bg-slate-50 hover:border-[#023047]/40">
+          <label className="flex h-64 w-full cursor-pointer items-center justify-center overflow-hidden border border-dashed border-slate-300 bg-slate-50 hover:border-[#023047]/40">
             {coverUploading ? (
               <Loader2 className="h-5 w-5 animate-spin text-slate-400" />
             ) : coverImageUrl ? (
