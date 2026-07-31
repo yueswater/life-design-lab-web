@@ -31,7 +31,7 @@ export const testimonialsData: TestimonialItem[] = [
       zh: '教職轉職工程師',
       en: 'Teacher to engineer',
     },
-    imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+    imageUrl: '/testimonials/shawn.png',
     featured: true,
   },
   {
@@ -53,28 +53,28 @@ export const testimonialsData: TestimonialItem[] = [
       zh: '公務員考取理工頂大碩士',
       en: 'Civil servant to top-university grad school',
     },
-    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400',
+    imageUrl: '/testimonials/wu.png',
   },
   {
-    id: 'lin',
+    id: 'array',
     quote: {
-      zh: '透過生命設計的框架重新梳理價值觀，我才發現自己不是不努力，而是走錯了賽道。現在每天上班都有明確的目標與熱情！',
-      en: 'Rethinking my values through the life-design framework, I realized I wasn\'t lacking effort — I was just on the wrong track. Now I go to work every day with real purpose and energy.',
+      zh: '你的生命設計真的幫助到我！我才明白之於我真正重要的事，對生活的樣貌更有選擇權與彈性。',
+      en: 'Your life design work genuinely helped me. I finally understood what truly matters to me, and now I have far more choice and flexibility in shaping what my life looks like.',
     },
-    author: 'Lin',
+    author: 'Array',
     authorTitle: {
-      zh: '現為知名外商科技公司 Product Manager',
-      en: 'Now a Product Manager at a global tech company',
+      zh: '現為某知名企業總經理室幕僚',
+      en: 'Now on the CEO office staff at a well-known company',
     },
     originalRole: {
-      zh: '原傳統製造業行銷專員',
-      en: 'Former marketing specialist in traditional manufacturing',
+      zh: '原數據分析師，轉戰公司財務顧問',
+      en: 'Former data analyst turned corporate financial advisor',
     },
     tag: {
-      zh: '傳產跨國轉戰外商 PM',
-      en: 'Manufacturing to global-firm PM',
+      zh: '數據分析師轉戰總經理室幕僚',
+      en: 'Data analyst to executive office staff',
     },
-    imageUrl: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400',
+    imageUrl: '/testimonials/array.png',
   },
   {
     id: 'chen',
@@ -95,6 +95,6 @@ export const testimonialsData: TestimonialItem[] = [
       zh: '體制內解放成為自由工作者',
       en: 'Corporate life to freelance freedom',
     },
-    imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400',
+    imageUrl: '/testimonials/chen.png',
   },
 ];
