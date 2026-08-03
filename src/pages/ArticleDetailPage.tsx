@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
-import { ArrowLeft, Eye, Link as LinkIcon, Loader2, Share2 } from 'lucide-react';
+import { ArrowLeft, Eye, Link as LinkIcon, Loader2 } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLine, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useTranslation } from '../i18n/strings';
 import { fetchArticleBySlug, recordArticleShare, recordArticleView } from '../lib/articles-api';
@@ -114,7 +115,7 @@ export default function ArticleDetailPage() {
               {article.viewCount}
             </span>
             <span className="flex items-center gap-1">
-              <Share2 className="h-3.5 w-3.5" />
+              <FontAwesomeIcon icon={faShare} className="h-3.5 w-3.5" />
               {article.shareCount}
             </span>
           </div>
