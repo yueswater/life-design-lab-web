@@ -3,7 +3,7 @@ import Suggestion, { SuggestionOptions } from '@tiptap/suggestion';
 import { ReactRenderer } from '@tiptap/react';
 import tippy, { Instance as TippyInstance } from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
-import { Heading2, Heading3, Heading4, List, ListOrdered, Image as ImageIcon } from 'lucide-react';
+import { Heading2, Heading3, Heading4, List, ListOrdered, Quote, Image as ImageIcon } from 'lucide-react';
 import { SlashCommandList, SlashCommandListRef, SlashCommandItem } from './SlashCommandList';
 import type { Editor, Range } from '@tiptap/core';
 
@@ -38,6 +38,12 @@ function getItems(lang: 'zh' | 'en'): SlashCommandItem[] {
       description: lang === 'zh' ? '數字編號清單' : 'A numbered list',
       icon: ListOrdered,
       command: ({ editor, range }) => editor.chain().focus().deleteRange(range).toggleOrderedList().run(),
+    },
+    {
+      title: lang === 'zh' ? '引言' : 'Quote',
+      description: lang === 'zh' ? '引用區塊，可加作者與書籍' : 'A quote block, with author and book',
+      icon: Quote,
+      command: ({ editor, range }) => editor.chain().focus().deleteRange(range).toggleBlockquote().run(),
     },
     {
       title: lang === 'zh' ? '插入圖片' : 'Image',
@@ -92,6 +98,8 @@ export const SlashCommand = Extension.create<{ lang: 'zh' | 'en' }>({
               interactive: true,
               trigger: 'manual',
               placement: 'bottom-start',
+              theme: 'slash-command',
+              arrow: false,
             });
           },
           onUpdate: (props) => {

@@ -4,6 +4,7 @@ import Color from '@tiptap/extension-color';
 import Underline from '@tiptap/extension-underline';
 import Placeholder from '@tiptap/extension-placeholder';
 import { ArticleImage } from './ArticleImage';
+import { ArticleBlockquote } from './ArticleBlockquote';
 import { SlashCommand } from './SlashCommand';
 
 // Shared between the live editor and the read-only renderer (preview pane +
@@ -14,11 +15,15 @@ export function getArticleExtensions(lang: 'zh' | 'en', placeholder?: string, en
   return [
     StarterKit.configure({
       heading: { levels: [2, 3, 4] },
+      // Replaced by ArticleBlockquote below, which adds author/source
+      // attribution attrs + a NodeView on top of the same node.
+      blockquote: false,
     }),
     TextStyle,
     Color,
     Underline,
     ArticleImage.configure({ lang }),
+    ArticleBlockquote.configure({ lang }),
     ...(placeholder ? [Placeholder.configure({ placeholder })] : []),
     ...(enableSlashCommand ? [SlashCommand.configure({ lang })] : []),
   ];

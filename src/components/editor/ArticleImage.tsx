@@ -39,6 +39,7 @@ const ArticleImageView: React.FC<NodeViewProps> = (props) => {
   // and cuts off IME input (Zhuyin) before a character can finish composing.
   const [captionDraft, setCaptionDraft] = useState<string | null>(null);
   const caption = captionDraft ?? (typeof node.attrs.caption === 'string' ? node.attrs.caption : '');
+  const hasSavedCaption = typeof node.attrs.caption === 'string' && node.attrs.caption.trim().length > 0;
 
   return (
     <NodeViewWrapper
@@ -64,36 +65,41 @@ const ArticleImageView: React.FC<NodeViewProps> = (props) => {
           <Trash2 className="h-3.5 w-3.5" />
         </button>
       )}
-      <figcaption
-        className="mt-2 text-center text-xs font-medium text-slate-500"
-        // Marks this subtree as outside ProseMirror's editable document, so
-        // the nested <input> handles its own native IME composition (e.g.
-        // Zhuyin) instead of having each keystroke intercepted/committed by
-        // ProseMirror before composition finishes.
-        contentEditable={false}
-      >
-        <span className="font-semibold text-slate-600">
-          {prefix} {number}
-        </span>
-        {editor.isEditable ? (
-          <input
-            type="text"
-            value={caption}
-            onChange={(e) => setCaptionDraft(e.target.value)}
-            onBlur={() => {
-              if (captionDraft !== null) updateAttributes({ caption: captionDraft });
-            }}
-            placeholder={lang === 'zh' ? '輸入圖說…' : 'Enter a caption…'}
-            // Without this, ProseMirror's own mousedown handling grabs the
-            // click before the input actually receives DOM focus, so IME
-            // composition (e.g. Zhuyin) never starts on it properly.
-            onMouseDown={(e) => e.stopPropagation()}
-            className="ml-1.5 w-56 border-b border-dashed border-slate-300 bg-transparent text-center text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
-          />
-        ) : (
-          node.attrs.caption && <span>：{node.attrs.caption}</span>
-        )}
-      </figcaption>
+      {/* In the published (read-only) view, an image with no caption gets no
+          figcaption at all — no dangling "圖 x"/"Figure x" label. In the
+          editor it always shows so there's a visible spot to type one. */}
+      {(editor.isEditable || hasSavedCaption) && (
+        <figcaption
+          className="mt-2 text-center text-xs font-medium text-slate-500"
+          // Marks this subtree as outside ProseMirror's editable document, so
+          // the nested <input> handles its own native IME composition (e.g.
+          // Zhuyin) instead of having each keystroke intercepted/committed by
+          // ProseMirror before composition finishes.
+          contentEditable={false}
+        >
+          <span className="font-semibold text-slate-600">
+            {prefix} {number}
+          </span>
+          {editor.isEditable ? (
+            <input
+              type="text"
+              value={caption}
+              onChange={(e) => setCaptionDraft(e.target.value)}
+              onBlur={() => {
+                if (captionDraft !== null) updateAttributes({ caption: captionDraft });
+              }}
+              placeholder={lang === 'zh' ? '輸入圖說…' : 'Enter a caption…'}
+              // Without this, ProseMirror's own mousedown handling grabs the
+              // click before the input actually receives DOM focus, so IME
+              // composition (e.g. Zhuyin) never starts on it properly.
+              onMouseDown={(e) => e.stopPropagation()}
+              className="ml-1.5 w-56 border-b border-dashed border-slate-300 bg-transparent text-center text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
+            />
+          ) : (
+            <span>：{node.attrs.caption}</span>
+          )}
+        </figcaption>
+      )}
     </NodeViewWrapper>
   );
 };

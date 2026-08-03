@@ -19,6 +19,21 @@ body {
   display: none;
 }
 
+/* Strip tippy.js's default dark bubble chrome for the slash-command popup —
+   its content already renders its own white rounded card. */
+.tippy-box[data-theme~="slash-command"] {
+  background-color: transparent;
+  color: inherit;
+}
+
+.tippy-box[data-theme~="slash-command"] .tippy-content {
+  padding: 0;
+}
+
+.tippy-box[data-theme~="slash-command"] .tippy-arrow {
+  display: none;
+}
+
 /* Page-transition overlay: fades the frosted backdrop in, holds, fades out */
 @keyframes page-transition-overlay-life {
   0% {

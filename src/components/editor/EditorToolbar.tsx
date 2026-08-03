@@ -1,6 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import { Editor } from '@tiptap/react';
-import { Heading2, Heading3, Heading4, List, ListOrdered, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Heading2, Heading3, Heading4, List, ListOrdered, Quote, Image as ImageIcon, Loader2 } from 'lucide-react';
 
 interface EditorToolbarProps {
   editor: Editor;
@@ -69,6 +69,14 @@ export const EditorToolbar = forwardRef<EditorToolbarRef, EditorToolbarProps>(
           className={btnClass(editor.isActive('orderedList'))}
         >
           <ListOrdered className="h-4 w-4" />
+        </button>
+        <button
+          type="button"
+          title="引言"
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          className={btnClass(editor.isActive('blockquote'))}
+        >
+          <Quote className="h-4 w-4" />
         </button>
 
         <span className="mx-1 h-5 w-px bg-slate-200" />
