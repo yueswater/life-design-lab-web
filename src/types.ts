@@ -72,6 +72,7 @@ export interface ArticleSummary {
   descriptionEn: string;
   coverImageUrl: string | null;
   viewCount: number;
+  shareCount: number;
   publishedAt: string | null;
 }
 
@@ -86,6 +87,7 @@ export interface ArticleDetail {
   contentEn: TiptapDoc;
   coverImageUrl: string | null;
   viewCount: number;
+  shareCount: number;
   publishedAt: string | null;
 }
 

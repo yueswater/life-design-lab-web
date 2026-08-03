@@ -26,6 +26,12 @@ export async function recordArticleView(slug: string): Promise<void> {
   );
 }
 
+export async function recordArticleShare(slug: string): Promise<void> {
+  await fetch(`${API_BASE_URL}/api/articles/${encodeURIComponent(slug)}/share`, { method: 'POST' }).catch(
+    () => {}
+  );
+}
+
 export async function fetchAdminArticles(): Promise<AdminArticle[]> {
   const response = await fetch(`${API_BASE_URL}/api/admin/articles`, { credentials: 'include' });
   if (response.status === 401) throw new Error('UNAUTHORIZED');

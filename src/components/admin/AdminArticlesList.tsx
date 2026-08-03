@@ -136,6 +136,7 @@ export const AdminArticlesList = ({ onOpenArticle }: AdminArticlesListProps) => 
                   <th className="py-3 pr-4 font-bold">標題</th>
                   <th className="py-3 pr-4 font-bold">狀態</th>
                   <th className="py-3 pr-4 font-bold">觀看數</th>
+                  <th className="py-3 pr-4 font-bold">分享數</th>
                   <th className="py-3 pr-4 font-bold">建立時間</th>
                   <th className="py-3 font-bold">操作</th>
                 </tr>
@@ -160,6 +161,7 @@ export const AdminArticlesList = ({ onOpenArticle }: AdminArticlesListProps) => 
                       </span>
                     </td>
                     <td className="py-3.5 pr-4 text-slate-700">{a.viewCount}</td>
+                    <td className="py-3.5 pr-4 text-slate-700">{a.shareCount}</td>
                     <td className="py-3.5 pr-4 whitespace-nowrap text-xs text-slate-400">
                       {formatDateTime(a.createdAt)}
                     </td>

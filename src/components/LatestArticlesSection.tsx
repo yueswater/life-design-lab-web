@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Eye, Newspaper } from 'lucide-react';
+import { ArrowRight, Eye, Newspaper, Share2 } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { fetchLatestArticles } from '../lib/articles-api';
 import { ArticleSummary } from '../types';
@@ -88,9 +88,15 @@ export const LatestArticlesSection = () => {
                   </p>
                   <div className="mt-3 flex items-center justify-between text-xs font-semibold text-slate-400">
                     <span>{formatDate(article.publishedAt, lang)}</span>
-                    <span className="flex items-center gap-1">
-                      <Eye className="h-3.5 w-3.5" />
-                      {article.viewCount}
+                    <span className="flex items-center gap-2">
+                      <span className="flex items-center gap-1">
+                        <Eye className="h-3.5 w-3.5" />
+                        {article.viewCount}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Share2 className="h-3.5 w-3.5" />
+                        {article.shareCount}
+                      </span>
                     </span>
                   </div>
                 </div>

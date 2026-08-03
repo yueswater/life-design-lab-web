@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
-import { ArrowLeft, Eye, Loader2 } from 'lucide-react';
+import { ArrowLeft, Eye, Link as LinkIcon, Loader2, Share2 } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faLine, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faLine, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useTranslation } from '../i18n/strings';
-import { fetchArticleBySlug, recordArticleView } from '../lib/articles-api';
+import { fetchArticleBySlug, recordArticleShare, recordArticleView } from '../lib/articles-api';
 import { hasAnalyticsConsent } from '../lib/cookieConsent';
 import { ArticleDetail } from '../types';
 import { ArticleReadOnly } from '../components/editor/ArticleReadOnly';
@@ -113,6 +113,10 @@ export default function ArticleDetailPage() {
               <Eye className="h-3.5 w-3.5" />
               {article.viewCount}
             </span>
+            <span className="flex items-center gap-1">
+              <Share2 className="h-3.5 w-3.5" />
+              {article.shareCount}
+            </span>
           </div>
 
           <div className="mt-8">
@@ -129,6 +133,7 @@ export default function ArticleDetailPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Line"
+                onClick={() => recordArticleShare(article.slug)}
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-[#06C755] text-white transition-transform hover:scale-105"
               >
                 <FontAwesomeIcon icon={faLine} className="h-4.5 w-4.5" />
@@ -138,21 +143,18 @@ export default function ArticleDetailPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
+                onClick={() => recordArticleShare(article.slug)}
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white transition-transform hover:scale-105"
               >
                 <FontAwesomeIcon icon={faWhatsapp} className="h-4.5 w-4.5" />
               </a>
-              <button
+              {/* Instagram share button — no public web share intent exists;
+                  Web Share API fallback below was more copy-link-via-toast
+                  than a real IG share. Commented out per request pending a
+                  better approach. */}
+              {/* <button
                 type="button"
                 onClick={async () => {
-                  // Instagram has no public web share intent — the Story
-                  // sticker/background trick only works from native apps via
-                  // Meta's SDK. The Web Share API's file support is the
-                  // closest thing a website gets: it hands the image to the
-                  // OS share sheet, where Instagram shows up as a real
-                  // target on iOS/Android. Falls back to copying the link
-                  // when that's unavailable (desktop, unsupported browser,
-                  // or no cover image to share).
                   if (
                     article.coverImageUrl &&
                     typeof navigator.share === 'function' &&
@@ -185,7 +187,7 @@ export default function ArticleDetailPage() {
                 className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-linear-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5] text-white transition-transform hover:scale-105"
               >
                 <FontAwesomeIcon icon={faInstagram} className="h-4.5 w-4.5" />
-              </button>
+              </button> */}
               <a
                 href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(
                   shareTitle
@@ -193,10 +195,23 @@ export default function ArticleDetailPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X"
+                onClick={() => recordArticleShare(article.slug)}
                 className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-white transition-transform hover:scale-105"
               >
                 <FontAwesomeIcon icon={faXTwitter} className="h-4 w-4" />
               </a>
+              <button
+                type="button"
+                onClick={() => {
+                  navigator.clipboard.writeText(shareUrl);
+                  recordArticleShare(article.slug);
+                  showToast(lang === 'zh' ? '連結已複製！' : 'Link copied!');
+                }}
+                aria-label={lang === 'zh' ? '複製連結' : 'Copy link'}
+                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-slate-500 text-white transition-transform hover:scale-105"
+              >
+                <LinkIcon className="h-4.5 w-4.5" />
+              </button>
             </div>
           </div>
         </div>
