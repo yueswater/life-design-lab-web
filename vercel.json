@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    { "source": "/articles/:slug", "destination": "/api/og/articles/:slug" },
+    { "source": "/articles/:slug", "destination": "/api/og-article?slug=:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

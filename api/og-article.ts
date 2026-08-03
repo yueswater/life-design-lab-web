@@ -10,6 +10,11 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 // article's title/description/image, and serve it back unchanged
 // otherwise — the same #root + script/style tags, so the real SPA boots
 // normally for human visitors too.
+//
+// Deliberately a flat file (not api/og/articles/[slug].ts) — Vercel wasn't
+// resolving that nested dynamic-segment path at all and silently fell back
+// to the static index.html for every request. vercel.json forwards the
+// slug as a query param instead (?slug=:slug), which works reliably.
 const SITE_URL = 'https://www.life-design-lab.space';
 const API_BASE_URL = process.env.VITE_API_URL ?? 'https://api.life-design-lab.space';
 const DEFAULT_TITLE = '生命設計實驗室 | 設計專屬你的人生劇本';
