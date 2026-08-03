@@ -4,7 +4,6 @@ import { ModuleItem } from '../types';
 import { modulesData } from '../data/modulesData';
 import { HeroSection } from '../components/HeroSection';
 import { TestimonialsSection } from '../components/TestimonialsSection';
-import { LatestArticlesSection } from '../components/LatestArticlesSection';
 import { Module3DCarousel } from '../components/Module3DCarousel';
 import { ModuleDetailModal } from '../components/ModuleDetailModal';
 import type { LayoutContext } from '../components/Layout';
@@ -62,9 +61,6 @@ export default function HomePage() {
         onSelectModule={handleOpenModuleDetails}
         onBooking={handleOpenModuleBooking}
       />
-
-      {/* Latest Articles Section */}
-      <LatestArticlesSection />
 
       {/* Module Details / Booking Modal */}
       <ModuleDetailModal
