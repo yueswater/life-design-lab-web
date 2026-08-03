@@ -95,4 +95,5 @@ export interface AdminArticle extends ArticleDetail {
   status: ArticleStatus;
   createdAt: string;
   updatedAt: string;
+  tags: string[];
 }

@@ -7,9 +7,15 @@ import {
   ImagePlus,
   Loader2,
   PenLine,
+  X,
 } from 'lucide-react';
 import { AdminArticle, ArticleStatus, TiptapDoc } from '../../types';
-import { fetchAdminArticle, updateAdminArticle, uploadArticleImage } from '../../lib/articles-api';
+import {
+  fetchAdminArticle,
+  fetchAdminTagSuggestions,
+  updateAdminArticle,
+  uploadArticleImage,
+} from '../../lib/articles-api';
 import { ArticleEditor } from '../editor/ArticleEditor';
 import { ArticleReadOnly } from '../editor/ArticleReadOnly';
 import { ImageCropModal } from '../editor/ImageCropModal';
@@ -18,6 +24,7 @@ type ViewMode = 'edit' | 'split' | 'preview';
 type SaveState = 'saved' | 'saving' | 'unsaved' | 'error';
 
 const AUTOSAVE_INTERVAL_MS = 30000;
+const MAX_TAGS = 5;
 
 const VIEW_MODE_OPTIONS: { value: ViewMode; label: string; icon: typeof PenLine }[] = [
   { value: 'edit', label: '純編輯', icon: PenLine },
@@ -55,6 +62,10 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
   const [contentEn, setContentEn] = useState<TiptapDoc>({ type: 'doc', content: [] });
   const [coverImageUrl, setCoverImageUrl] = useState<string | null>(null);
   const [status, setStatus] = useState<ArticleStatus>('draft');
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagInput, setTagInput] = useState('');
+  const [tagInputFocused, setTagInputFocused] = useState(false);
+  const [tagSuggestions, setTagSuggestions] = useState<string[]>([]);
 
   const dirtyRef = useRef(false);
   const savingRef = useRef(false);
@@ -72,16 +83,38 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
         setContentEn(a.contentEn);
         setCoverImageUrl(a.coverImageUrl);
         setStatus(a.status);
+        setTags(a.tags);
         dirtyRef.current = false;
         setSaveState('saved');
       })
       .catch((err) => setError(err instanceof Error ? err.message : '無法載入文章，請稍後再試。'));
   }, [articleId]);
 
+  useEffect(() => {
+    fetchAdminTagSuggestions().then(setTagSuggestions);
+  }, []);
+
   const markDirty = () => {
     dirtyRef.current = true;
     setSaveState('unsaved');
   };
+
+  const addTag = (raw: string) => {
+    const value = raw.trim();
+    if (!value || tags.includes(value) || tags.length >= MAX_TAGS) return;
+    setTags([...tags, value]);
+    setTagInput('');
+    markDirty();
+  };
+
+  const removeTag = (tag: string) => {
+    setTags(tags.filter((t) => t !== tag));
+    markDirty();
+  };
+
+  const tagSuggestionMatches = tagSuggestions
+    .filter((s) => !tags.includes(s) && (tagInput === '' || s.includes(tagInput)))
+    .slice(0, 8);
 
   const handleSave = async (nextStatus?: ArticleStatus) => {
     if (savingRef.current) return;
@@ -99,10 +132,12 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
         contentEn,
         coverImageUrl: coverImageUrl ?? '',
         status: nextStatus ?? status,
+        tags,
       });
       setArticle(updated);
       setStatus(updated.status);
       setSlug(updated.slug);
+      setTags(updated.tags);
       dirtyRef.current = false;
       setSaveState('saved');
     } catch (err) {
@@ -120,7 +155,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
     }, AUTOSAVE_INTERVAL_MS);
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [articleId, titleZh, titleEn, slug, descriptionZh, descriptionEn, contentZh, contentEn, coverImageUrl, status]);
+  }, [articleId, titleZh, titleEn, slug, descriptionZh, descriptionEn, contentZh, contentEn, coverImageUrl, status, tags]);
 
   const handleCoverCropConfirm = async (blob: Blob) => {
     setPendingCoverFile(null);
@@ -306,6 +341,67 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
             spellCheck={false}
             className="w-full min-w-0 border-b border-dashed border-slate-300 bg-transparent py-0.5 font-mono text-slate-500 focus:border-[#023047] focus:text-[#023047] focus:outline-none"
           />
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-1.5">
+          {tags.map((tag) => (
+            <span
+              key={tag}
+              className="flex items-center gap-1 rounded-full bg-[#023047]/10 px-2.5 py-1 text-xs font-semibold text-[#023047]"
+            >
+              {tag}
+              <button
+                type="button"
+                onClick={() => removeTag(tag)}
+                aria-label={`移除標籤 ${tag}`}
+                className="cursor-pointer text-[#023047]/50 hover:text-[#023047]"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </span>
+          ))}
+          {tags.length < MAX_TAGS && (
+            <div className="relative">
+              <input
+                type="text"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={(e) => {
+                  // Guard against IME (Zhuyin/Pinyin) composition: Enter is
+                  // used to confirm a candidate mid-composition and must not
+                  // be hijacked into committing a tag.
+                  if (e.nativeEvent.isComposing || e.keyCode === 229) return;
+                  if (e.key === 'Enter' || e.key === ',') {
+                    e.preventDefault();
+                    addTag(tagInput);
+                  } else if (e.key === 'Backspace' && tagInput === '' && tags.length > 0) {
+                    removeTag(tags[tags.length - 1]);
+                  }
+                }}
+                onFocus={() => setTagInputFocused(true)}
+                onBlur={() => setTagInputFocused(false)}
+                placeholder={tags.length === 0 ? (lang === 'zh' ? '標籤（最多 5 個）' : 'Tags (max 5)') : ''}
+                className="w-36 border-b border-dashed border-slate-300 bg-transparent py-0.5 text-xs text-slate-600 focus:border-[#023047] focus:outline-none"
+              />
+              {tagInputFocused && tagSuggestionMatches.length > 0 && (
+                <div className="absolute left-0 top-full z-10 mt-1 max-h-40 w-40 overflow-y-auto rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
+                  {tagSuggestionMatches.map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onMouseDown={(e) => {
+                        e.preventDefault();
+                        addTag(s);
+                      }}
+                      className="block w-full cursor-pointer px-3 py-1.5 text-left text-xs text-slate-600 hover:bg-slate-50"
+                    >
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <textarea

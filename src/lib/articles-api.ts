@@ -67,6 +67,7 @@ export interface UpdateArticleInput {
   contentEn?: TiptapDoc;
   coverImageUrl?: string;
   status?: ArticleStatus;
+  tags?: string[];
 }
 
 export async function updateAdminArticle(id: string, input: UpdateArticleInput): Promise<AdminArticle> {
@@ -77,6 +78,14 @@ export async function updateAdminArticle(id: string, input: UpdateArticleInput):
     body: JSON.stringify(input),
   });
   if (!response.ok) throw new Error(await parseError(response, '更新文章失敗，請稍後再試。'));
+  return response.json();
+}
+
+export async function fetchAdminTagSuggestions(): Promise<string[]> {
+  const response = await fetch(`${API_BASE_URL}/api/admin/articles/tags/suggestions`, {
+    credentials: 'include',
+  });
+  if (!response.ok) return [];
   return response.json();
 }
 
