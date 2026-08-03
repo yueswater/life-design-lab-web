@@ -125,7 +125,7 @@ export default function ArticleDetailPage() {
             </p>
             <div className="mt-5 flex items-center justify-center gap-3">
               <a
-                href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`}
+                href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Line"
@@ -134,7 +134,7 @@ export default function ArticleDetailPage() {
                 <FontAwesomeIcon icon={faLine} className="h-4.5 w-4.5" />
               </a>
               <a
-                href={`https://wa.me/?text=${encodeURIComponent(`${shareTitle} ${shareUrl}`)}`}
+                href={`https://wa.me/?text=${encodeURIComponent(`${shareTitle}\n${shareUrl}`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
