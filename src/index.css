@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --animate-arrow-wiggle: arrow-wiggle 0.6s ease-in-out infinite;
+}
+
+@keyframes arrow-wiggle {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+}
+
 body {
   font-family: "Roboto", sans-serif;
 }

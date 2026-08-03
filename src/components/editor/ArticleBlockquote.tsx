@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Blockquote from '@tiptap/extension-blockquote';
 import { NodeViewContent, NodeViewWrapper, ReactNodeViewRenderer } from '@tiptap/react';
 import type { NodeViewProps } from '@tiptap/react';
-import { Trash2 } from 'lucide-react';
+import { Quote, Trash2 } from 'lucide-react';
 
 // Blockquote with an optional author + book/source attribution, editable via
 // two small inputs below the quoted text. Same NodeViewWrapper-as-the-real-tag
@@ -36,7 +36,7 @@ const ArticleBlockquoteView: React.FC<NodeViewProps> = (props) => {
   return (
     <NodeViewWrapper
       as="blockquote"
-      className="group relative"
+      className="group relative my-8 border-l-0 px-10 py-2 text-center not-italic before:content-none after:content-none sm:px-14"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -53,10 +53,24 @@ const ArticleBlockquoteView: React.FC<NodeViewProps> = (props) => {
         </button>
       )}
 
-      <NodeViewContent />
+      <Quote
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-6 w-6 -scale-x-100 fill-[#FBD634] text-[#FBD634] sm:h-8 sm:w-8"
+      />
+      <Quote
+        aria-hidden="true"
+        className="absolute bottom-0 right-0 h-6 w-6 fill-[#FBD634] text-[#FBD634] sm:h-8 sm:w-8"
+      />
+
+      <div className="mx-auto max-w-2xl text-lg font-bold leading-relaxed text-[#023047] [&_p]:m-0">
+        <NodeViewContent />
+      </div>
 
       {editor.isEditable ? (
-        <div className="mt-1.5 flex flex-wrap items-center gap-2 not-italic" contentEditable={false}>
+        <div
+          className="mt-3 flex flex-wrap items-center justify-center gap-2 not-italic"
+          contentEditable={false}
+        >
           <input
             type="text"
             value={author}
@@ -66,7 +80,7 @@ const ArticleBlockquoteView: React.FC<NodeViewProps> = (props) => {
             }}
             onMouseDown={(e) => e.stopPropagation()}
             placeholder={lang === 'zh' ? '作者' : 'Author'}
-            className="w-28 border-b border-dashed border-slate-300 bg-transparent text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
+            className="w-28 border-b border-dashed border-slate-300 bg-transparent text-center text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
           />
           <input
             type="text"
@@ -77,12 +91,12 @@ const ArticleBlockquoteView: React.FC<NodeViewProps> = (props) => {
             }}
             onMouseDown={(e) => e.stopPropagation()}
             placeholder={lang === 'zh' ? '書籍／出處' : 'Book / source'}
-            className="w-36 border-b border-dashed border-slate-300 bg-transparent text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
+            className="w-36 border-b border-dashed border-slate-300 bg-transparent text-center text-xs text-slate-500 focus:border-slate-500 focus:outline-none"
           />
         </div>
       ) : (
         hasAttribution && (
-          <p className="mt-1.5 text-right text-xs not-italic text-slate-400">
+          <p className="mt-3 text-center text-xs not-italic text-slate-400 sm:text-sm">
             —— {node.attrs.author as string}
             {node.attrs.author && node.attrs.source ? '．' : ''}
             {node.attrs.source ? quotedSource(node.attrs.source as string) : ''}

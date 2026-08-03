@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { ArrowLeft, Eye, Loader2 } from 'lucide-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInstagram, faLine, faWhatsapp, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useTranslation } from '../i18n/strings';
 import { fetchArticleBySlug, recordArticleView } from '../lib/articles-api';
 import { hasAnalyticsConsent } from '../lib/cookieConsent';
 import { ArticleDetail } from '../types';
 import { ArticleReadOnly } from '../components/editor/ArticleReadOnly';
+import { LayoutContext } from '../components/Layout';
 
 function formatDate(iso: string | null, lang: 'zh' | 'en'): string {
   if (!iso) return '';
@@ -22,8 +25,14 @@ export default function ArticleDetailPage() {
   const navigate = useNavigate();
   const { lang } = useLanguage();
   const t = useTranslation();
+  const { setNavLight, showToast } = useOutletContext<LayoutContext>();
   const [article, setArticle] = useState<ArticleDetail | null>(null);
   const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    setNavLight(Boolean(article?.coverImageUrl));
+    return () => setNavLight(false);
+  }, [article, setNavLight]);
 
   useEffect(() => {
     if (!slug) return;
@@ -62,31 +71,134 @@ export default function ArticleDetailPage() {
     );
   }
 
+  // The browser percent-encodes non-ASCII path segments (Chinese slugs) in
+  // location.href; decode back to readable text before handing it to share
+  // intents so pasted links show Chinese, not %E7%94%9F-style escapes.
+  const shareUrl = decodeURIComponent(window.location.href);
+  const shareTitle = lang === 'zh' ? article.titleZh : article.titleEn;
+
   return (
-    <article className="w-full px-4 py-16 sm:px-8 sm:py-20">
-      <div className="mx-auto max-w-3xl">
-        <Link
-          to="/articles"
-          className="flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-[#023047]"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t.nav.articles}
-        </Link>
-
-        <h1 className="mt-6 font-huninn text-3xl font-black tracking-tight text-[#023047] sm:text-4xl">
-          {lang === 'zh' ? article.titleZh : article.titleEn}
-        </h1>
-
-        <div className="mt-3 flex items-center gap-4 text-xs font-semibold text-slate-400">
-          <span>{formatDate(article.publishedAt, lang)}</span>
-          <span className="flex items-center gap-1">
-            <Eye className="h-3.5 w-3.5" />
-            {article.viewCount}
-          </span>
+    <article className="w-full">
+      {article.coverImageUrl && (
+        <div className="-mt-16 h-56 w-full overflow-hidden sm:-mt-[68px] sm:h-72">
+          <img
+            src={article.coverImageUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
         </div>
+      )}
 
-        <div className="mt-8">
-          <ArticleReadOnly lang={lang} content={lang === 'zh' ? article.contentZh : article.contentEn} />
+      <div
+        className={`px-4 pb-16 sm:px-8 sm:pb-20 ${
+          article.coverImageUrl ? 'pt-8 sm:pt-10' : 'pt-16 sm:pt-20'
+        }`}
+      >
+        <div className="mx-auto max-w-3xl">
+          <Link
+            to="/articles"
+            className="group flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-[#023047]"
+          >
+            <ArrowLeft className="h-4 w-4 group-hover:animate-arrow-wiggle" />
+            {t.nav.articles}
+          </Link>
+
+          <h1 className="mt-6 font-huninn text-3xl font-black tracking-tight text-[#023047] sm:text-4xl">
+            {lang === 'zh' ? article.titleZh : article.titleEn}
+          </h1>
+
+          <div className="mt-3 flex items-center gap-4 text-xs font-semibold text-slate-400">
+            <span>{formatDate(article.publishedAt, lang)}</span>
+            <span className="flex items-center gap-1">
+              <Eye className="h-3.5 w-3.5" />
+              {article.viewCount}
+            </span>
+          </div>
+
+          <div className="mt-8">
+            <ArticleReadOnly lang={lang} content={lang === 'zh' ? article.contentZh : article.contentEn} />
+          </div>
+
+          <div className="mt-16 border-t border-slate-100 pt-10 text-center">
+            <p className="font-huninn text-lg font-black text-[#023047]">
+              {lang === 'zh' ? '喜歡這篇文章嗎？分享給更多朋友吧！' : 'Enjoyed this article? Share it with others!'}
+            </p>
+            <div className="mt-5 flex items-center justify-center gap-3">
+              <a
+                href={`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Line"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[#06C755] text-white transition-transform hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faLine} className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href={`https://wa.me/?text=${encodeURIComponent(`${shareTitle} ${shareUrl}`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-[#25D366] text-white transition-transform hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} className="h-4.5 w-4.5" />
+              </a>
+              <button
+                type="button"
+                onClick={async () => {
+                  // Instagram has no public web share intent — the Story
+                  // sticker/background trick only works from native apps via
+                  // Meta's SDK. The Web Share API's file support is the
+                  // closest thing a website gets: it hands the image to the
+                  // OS share sheet, where Instagram shows up as a real
+                  // target on iOS/Android. Falls back to copying the link
+                  // when that's unavailable (desktop, unsupported browser,
+                  // or no cover image to share).
+                  if (
+                    article.coverImageUrl &&
+                    typeof navigator.share === 'function' &&
+                    typeof navigator.canShare === 'function'
+                  ) {
+                    try {
+                      const imageResponse = await fetch(article.coverImageUrl);
+                      const blob = await imageResponse.blob();
+                      const file = new File([blob], 'cover.jpg', { type: blob.type || 'image/jpeg' });
+                      if (navigator.canShare({ files: [file] })) {
+                        try {
+                          await navigator.share({ files: [file], title: shareTitle });
+                        } catch {
+                          // User cancelled the native share sheet — nothing to do.
+                        }
+                        return;
+                      }
+                    } catch {
+                      // Image fetch/prep failed — fall through to the clipboard copy below.
+                    }
+                  }
+                  navigator.clipboard.writeText(shareUrl);
+                  showToast(
+                    lang === 'zh'
+                      ? '連結已複製，貼到 Instagram 限動或訊息分享吧！'
+                      : 'Link copied — paste it into your Instagram story or DM!'
+                  );
+                }}
+                aria-label="Instagram"
+                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-linear-to-tr from-[#feda75] via-[#d62976] to-[#4f5bd5] text-white transition-transform hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faInstagram} className="h-4.5 w-4.5" />
+              </button>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(
+                  shareTitle
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-white transition-transform hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faXTwitter} className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </article>

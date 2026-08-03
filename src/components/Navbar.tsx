@@ -9,12 +9,14 @@ interface NavbarProps {
   activeTab: NavTab;
   onTabNavigate: (tab: NavTab) => void;
   onTryFree: () => void;
+  light?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeTab,
   onTabNavigate,
   onTryFree,
+  light = false,
 }) => {
   const { toggleLanguage } = useLanguage();
   const t = useTranslation();
@@ -26,6 +28,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   ];
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Only go light while the transparent header still floats over the page's
+  // own content (unscrolled, closed) — once it gains a white bg, dark text.
+  const isLight = light && !scrolled && !mobileOpen;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -70,10 +75,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             className="w-9 h-9 sm:w-10 sm:h-10 object-contain"
           />
           <span className="flex flex-col justify-center leading-none font-sans">
-            <span className="text-base sm:text-lg font-extrabold tracking-tight text-[#023047]">
+            <span
+              className={`text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-300 ${
+                isLight ? 'text-white' : 'text-[#023047]'
+              }`}
+            >
               生命設計實驗室
             </span>
-            <span className="mt-0.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] text-[#023047]/50">
+            <span
+              className={`mt-0.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] transition-colors duration-300 ${
+                isLight ? 'text-white/70' : 'text-[#023047]/50'
+              }`}
+            >
               Life Design Lab
             </span>
           </span>
@@ -81,19 +94,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center">
-          <div className="flex items-center space-x-7 text-sm font-semibold text-[#023047]">
+          <div
+            className={`flex items-center space-x-7 text-sm font-semibold transition-colors duration-300 ${
+              isLight ? 'text-white' : 'text-[#023047]'
+            }`}
+          >
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => onTabNavigate(tab.id)}
-                className="cursor-pointer text-[#023047] transition-opacity duration-150 hover:opacity-60"
+                className="cursor-pointer transition-opacity duration-150 hover:opacity-60"
               >
                 {tab.label}
               </button>
             ))}
             <button
               onClick={onTryFree}
-              className="cursor-pointer font-bold text-[#023047] transition-opacity hover:opacity-60"
+              className="cursor-pointer font-bold transition-opacity hover:opacity-60"
             >
               {t.nav.tryFree}
             </button>
@@ -102,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleLanguage}
               aria-label="Toggle language"
-              className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-black text-[#023047] transition-opacity hover:opacity-60"
+              className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-black transition-opacity hover:opacity-60"
             >
               <Languages className="h-3.5 w-3.5" />
               {t.nav.langToggle}
@@ -115,7 +132,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => setMobileOpen((open) => !open)}
           aria-label={mobileOpen ? '關閉選單' : '開啟選單'}
           aria-expanded={mobileOpen}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-[#023047] cursor-pointer lg:hidden"
+          className={`flex h-9 w-9 items-center justify-center rounded-full cursor-pointer transition-colors duration-300 lg:hidden ${
+            isLight ? 'text-white' : 'text-[#023047]'
+          }`}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

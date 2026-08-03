@@ -54,6 +54,7 @@ export async function createAdminArticle(titleZh: string): Promise<AdminArticle>
 export interface UpdateArticleInput {
   titleZh?: string;
   titleEn?: string;
+  slug?: string;
   descriptionZh?: string;
   descriptionEn?: string;
   contentZh?: TiptapDoc;

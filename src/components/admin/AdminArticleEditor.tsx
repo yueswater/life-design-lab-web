@@ -48,6 +48,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
 
   const [titleZh, setTitleZh] = useState('');
   const [titleEn, setTitleEn] = useState('');
+  const [slug, setSlug] = useState('');
   const [descriptionZh, setDescriptionZh] = useState('');
   const [descriptionEn, setDescriptionEn] = useState('');
   const [contentZh, setContentZh] = useState<TiptapDoc>({ type: 'doc', content: [] });
@@ -64,6 +65,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
         setArticle(a);
         setTitleZh(a.titleZh);
         setTitleEn(a.titleEn);
+        setSlug(a.slug);
         setDescriptionZh(a.descriptionZh);
         setDescriptionEn(a.descriptionEn);
         setContentZh(a.contentZh);
@@ -90,6 +92,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
       const updated = await updateAdminArticle(articleId, {
         titleZh,
         titleEn,
+        slug,
         descriptionZh,
         descriptionEn,
         contentZh,
@@ -99,6 +102,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
       });
       setArticle(updated);
       setStatus(updated.status);
+      setSlug(updated.slug);
       dirtyRef.current = false;
       setSaveState('saved');
     } catch (err) {
@@ -116,7 +120,7 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
     }, AUTOSAVE_INTERVAL_MS);
     return () => clearInterval(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [articleId, titleZh, titleEn, descriptionZh, descriptionEn, contentZh, contentEn, coverImageUrl, status]);
+  }, [articleId, titleZh, titleEn, slug, descriptionZh, descriptionEn, contentZh, contentEn, coverImageUrl, status]);
 
   const handleCoverCropConfirm = async (blob: Blob) => {
     setPendingCoverFile(null);
@@ -288,6 +292,21 @@ export const AdminArticleEditor = ({ articleId, onBack }: AdminArticleEditorProp
           placeholder={lang === 'zh' ? '文章標題（H1）' : 'Article title (H1)'}
           className="mt-4 w-full border-b-2 border-slate-200 bg-transparent pb-2 font-huninn text-2xl font-black text-[#023047] focus:border-[#023047] focus:outline-none"
         />
+
+        <div className="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+          <span className="shrink-0">/articles/</span>
+          <input
+            type="text"
+            value={slug}
+            onChange={(e) => {
+              setSlug(e.target.value);
+              markDirty();
+            }}
+            placeholder="custom-slug"
+            spellCheck={false}
+            className="w-full min-w-0 border-b border-dashed border-slate-300 bg-transparent py-0.5 font-mono text-slate-500 focus:border-[#023047] focus:text-[#023047] focus:outline-none"
+          />
+        </div>
 
         <textarea
           value={description}

@@ -11,12 +11,20 @@ import { CheckCircle } from 'lucide-react';
 export interface LayoutContext {
   showToast: (msg: string) => void;
   openTryFree: () => void;
+  setNavLight: (light: boolean) => void;
 }
 
 export const Layout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<NavTab>('modules');
+  const [navLight, setNavLight] = useState(false);
+
+  // A page opts into the light navbar (e.g. an article with a cover image
+  // behind it); reset on every route change so it never leaks to the next page.
+  useEffect(() => {
+    setNavLight(false);
+  }, [location.pathname]);
   const [metrics, setMetrics] = useState<Metric[]>(initialLabMetrics);
   const [selectedMetricId, setSelectedMetricId] = useState<string>('ai-churn-risk');
 
@@ -88,6 +96,7 @@ export const Layout: React.FC = () => {
         activeTab={activeTab}
         onTabNavigate={handleTabNavigate}
         onTryFree={() => navigate('/book')}
+        light={navLight}
       />
 
       {/* Routed Page Content — flex-1 so short pages still push the footer
@@ -95,7 +104,7 @@ export const Layout: React.FC = () => {
       <div className="flex-1">
         <Outlet
           context={
-            { showToast, openTryFree: () => navigate('/book') } satisfies LayoutContext
+            { showToast, openTryFree: () => navigate('/book'), setNavLight } satisfies LayoutContext
           }
         />
       </div>
