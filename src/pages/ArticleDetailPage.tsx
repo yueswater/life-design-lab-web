@@ -108,7 +108,7 @@ export default function ArticleDetailPage() {
             {lang === 'zh' ? article.titleZh : article.titleEn}
           </h1>
 
-          <div className="mt-3 flex items-center gap-4 text-xs font-semibold text-slate-400">
+          <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400">
             <span>{formatDate(article.publishedAt, lang)}</span>
             <span className="flex items-center gap-1">
               <Eye className="h-3.5 w-3.5" />
@@ -118,6 +118,15 @@ export default function ArticleDetailPage() {
               <FontAwesomeIcon icon={faShare} className="h-3.5 w-3.5" />
               {article.shareCount}
             </span>
+            {article.tags.map((tag) => (
+              <Link
+                key={tag}
+                to={`/articles?tag=${encodeURIComponent(tag)}`}
+                className="rounded-full bg-[#023047]/5 px-2.5 py-1 font-bold text-[#023047]/60 transition-colors hover:bg-[#FBD634] hover:text-[#023047]"
+              >
+                {tag}
+              </Link>
+            ))}
           </div>
 
           <div className="mt-8">

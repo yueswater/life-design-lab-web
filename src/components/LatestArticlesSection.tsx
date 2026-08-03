@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Eye, Newspaper } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +20,7 @@ function formatDate(iso: string | null, lang: 'zh' | 'en'): string {
 // never leaves a hollow section sitting on the homepage.
 export const LatestArticlesSection = () => {
   const { lang } = useLanguage();
+  const navigate = useNavigate();
   const [articles, setArticles] = useState<ArticleSummary[] | null>(null);
 
   useEffect(() => {
@@ -88,6 +89,23 @@ export const LatestArticlesSection = () => {
                   <p className="mt-1.5 flex-1 line-clamp-2 text-xs leading-relaxed text-slate-500">
                     {lang === 'zh' ? article.descriptionZh : article.descriptionEn}
                   </p>
+                  {article.tags.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {article.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            navigate(`/articles?tag=${encodeURIComponent(tag)}`);
+                          }}
+                          className="cursor-pointer rounded-full bg-[#023047]/5 px-2 py-0.5 text-[10px] font-bold text-[#023047]/60 transition-colors hover:bg-[#FBD634] hover:text-[#023047]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                   <div className="mt-3 flex items-center justify-between text-xs font-semibold text-slate-400">
                     <span>{formatDate(article.publishedAt, lang)}</span>
                     <span className="flex items-center gap-2">

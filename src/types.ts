@@ -73,6 +73,7 @@ export interface ArticleSummary {
   coverImageUrl: string | null;
   viewCount: number;
   shareCount: number;
+  tags: string[];
   publishedAt: string | null;
 }
 
@@ -88,6 +89,7 @@ export interface ArticleDetail {
   coverImageUrl: string | null;
   viewCount: number;
   shareCount: number;
+  tags: string[];
   publishedAt: string | null;
 }
 
@@ -95,5 +97,4 @@ export interface AdminArticle extends ArticleDetail {
   status: ArticleStatus;
   createdAt: string;
   updatedAt: string;
-  tags: string[];
 }
