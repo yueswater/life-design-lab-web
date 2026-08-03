@@ -63,6 +63,9 @@ export default function HomePage() {
         onBooking={handleOpenModuleBooking}
       />
 
+      {/* Latest Articles Section */}
+      <LatestArticlesSection />
+
       {/* Module Details / Booking Modal */}
       <ModuleDetailModal
         module={selectedModule}
