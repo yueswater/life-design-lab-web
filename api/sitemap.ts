@@ -4,7 +4,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 // listed articles and never grew as new ones got published. Generating it
 // here on every request (Vercel edge-caches the response) keeps it in sync
 // with whatever's actually published in the database.
-const SITE_URL = 'https://life-design-lab.space';
+const SITE_URL = 'https://www.life-design-lab.space';
 const API_BASE_URL = process.env.VITE_API_URL ?? 'https://api.life-design-lab.space';
 
 interface ArticleSummary {

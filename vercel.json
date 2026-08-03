@@ -1,17 +1,7 @@
 {
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/api/sitemap" },
-    {
-      "source": "/articles/:slug",
-      "has": [
-        {
-          "type": "header",
-          "key": "user-agent",
-          "value": ".*(facebookexternalhit|Facebot|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|TelegramBot|Pinterest|redditbot).*"
-        }
-      ],
-      "destination": "/api/og/articles/:slug"
-    },
+    { "source": "/articles/:slug", "destination": "/api/og/articles/:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
