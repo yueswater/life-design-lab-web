@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Editor } from '@tiptap/react';
 import { BubbleMenu } from '@tiptap/react/menus';
-import { Bold, Italic, Strikethrough, Palette } from 'lucide-react';
+import { Bold, Italic, Strikethrough, Underline, Palette } from 'lucide-react';
 
 interface EditorBubbleMenuProps {
   editor: Editor;
@@ -48,6 +48,14 @@ export const EditorBubbleMenu: React.FC<EditorBubbleMenuProps> = ({ editor }) =>
           className={btnClass(editor.isActive('strike'))}
         >
           <Strikethrough className="h-3.5 w-3.5" />
+        </button>
+        <button
+          type="button"
+          title="底線"
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          className={btnClass(editor.isActive('underline'))}
+        >
+          <Underline className="h-3.5 w-3.5" />
         </button>
 
         <span className="mx-0.5 h-4 w-px bg-white/20" />
