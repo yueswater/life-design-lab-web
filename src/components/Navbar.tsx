@@ -68,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="relative z-50 max-w-7xl mx-auto flex items-center justify-between">
         {/* Brand Logo */}
-        <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2.5 cursor-pointer">
+        <Link to="/" onClick={() => setMobileOpen(false)} className="group flex items-center gap-2.5 cursor-pointer">
           <img
             src="/logo.svg"
             alt="生命設計實驗室"
@@ -76,14 +76,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           />
           <span className="flex flex-col justify-center leading-none font-sans">
             <span
-              className={`text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-300 ${
+              className={`text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-300 group-hover:text-[#FBD634] ${
                 isLight ? 'text-white' : 'text-[#023047]'
               }`}
             >
               生命設計實驗室
             </span>
             <span
-              className={`mt-0.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] transition-colors duration-300 ${
+              className={`mt-0.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.12em] transition-colors duration-300 group-hover:text-[#FBD634]/70 ${
                 isLight ? 'text-white/70' : 'text-[#023047]/50'
               }`}
             >
@@ -103,14 +103,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={tab.id}
                 onClick={() => onTabNavigate(tab.id)}
-                className="cursor-pointer transition-opacity duration-150 hover:opacity-60"
+                className="cursor-pointer transition-colors duration-150 hover:text-[#FBD634]"
               >
                 {tab.label}
               </button>
             ))}
             <button
               onClick={onTryFree}
-              className="cursor-pointer font-bold transition-opacity hover:opacity-60"
+              className="cursor-pointer font-bold transition-colors hover:text-[#FBD634]"
             >
               {t.nav.tryFree}
             </button>
@@ -119,7 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={toggleLanguage}
               aria-label="Toggle language"
-              className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-black transition-opacity hover:opacity-60"
+              className="flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-black transition-colors hover:text-[#FBD634]"
             >
               <Languages className="h-3.5 w-3.5" />
               {t.nav.langToggle}

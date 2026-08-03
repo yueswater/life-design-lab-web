@@ -139,8 +139,8 @@ export const Module3DCarousel: React.FC<Module3DCarouselProps> = ({
       <div
         className={
           isMobile
-            ? 'flex flex-col bg-white pt-20 pb-10'
-            : 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pt-20 pb-[3vh] sm:pt-24'
+            ? 'flex flex-col bg-white pt-8 pb-10'
+            : 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden bg-white pt-8 pb-[3vh] sm:pt-10'
         }
       >
         {/* Section Header */}

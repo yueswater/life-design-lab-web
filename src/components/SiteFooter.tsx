@@ -38,10 +38,10 @@ export const SiteFooter: React.FC = () => {
         </div>
 
         <div className="order-1 flex items-center justify-center gap-4 text-slate-500 sm:order-3 sm:justify-self-end">
-          <Link to="/privacy" className="hover:text-slate-800 transition-colors">
+          <Link to="/privacy" className="hover:text-[#FBD634] transition-colors">
             {t.footer.privacy}
           </Link>
-          <Link to="/terms" className="hover:text-slate-800 transition-colors">
+          <Link to="/terms" className="hover:text-[#FBD634] transition-colors">
             {t.footer.terms}
           </Link>
         </div>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { Eye, Newspaper, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Eye, Flame, Newspaper, X } from 'lucide-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -46,8 +46,51 @@ export default function ArticlesPage() {
 
   const goToTag = (tag: string) => navigate(`/articles?tag=${encodeURIComponent(tag)}`);
 
+  // Card grid is 1/2/3 columns at mobile/sm/lg — page size tracks whatever
+  // fits 2 full rows on desktop (or a flat 5 in the mobile list layout) so
+  // pagination never cuts a row in half.
+  const [columns, setColumns] = useState(1);
+  useEffect(() => {
+    const mqSm = window.matchMedia('(min-width: 640px)');
+    const mqLg = window.matchMedia('(min-width: 1024px)');
+    const updateColumns = () => setColumns(mqLg.matches ? 3 : mqSm.matches ? 2 : 1);
+    updateColumns();
+    mqSm.addEventListener('change', updateColumns);
+    mqLg.addEventListener('change', updateColumns);
+    return () => {
+      mqSm.removeEventListener('change', updateColumns);
+      mqLg.removeEventListener('change', updateColumns);
+    };
+  }, []);
+
+  const pageSize = columns === 1 ? 5 : columns * 2;
+  const [page, setPage] = useState(1);
+  useEffect(() => {
+    setPage(1);
+  }, [activeTag, pageSize]);
+
+  const totalPages = displayedArticles ? Math.max(1, Math.ceil(displayedArticles.length / pageSize)) : 1;
+  const pageArticles = displayedArticles ? displayedArticles.slice((page - 1) * pageSize, page * pageSize) : [];
+
+  // When pagination is active, the gap before the footer shrinks to a third
+  // of one card row's actual rendered height (measured, since it varies by
+  // viewport/column count) instead of the section's normal bottom padding.
+  const firstCardRef = useRef<HTMLAnchorElement>(null);
+  const [rowHeight, setRowHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = firstCardRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(() => setRowHeight(el.offsetHeight));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [pageArticles.length]);
+
   return (
-    <section className="w-full px-4 py-16 sm:px-8 sm:py-20">
+    <section
+      className={`w-full px-4 pt-8 sm:px-8 sm:pt-10 ${totalPages > 1 ? '' : 'pb-16 sm:pb-20'}`}
+      style={totalPages > 1 && rowHeight ? { paddingBottom: rowHeight / 3 } : undefined}
+    >
       <div className="mx-auto max-w-6xl">
         <p className="mb-2 text-xs font-black uppercase tracking-[0.24em] text-[#023047]/50">
           {lang === 'zh' ? '生命設計筆記' : 'Notes on Life Design'}
@@ -103,27 +146,30 @@ export default function ArticlesPage() {
 
         {displayedArticles && displayedArticles.length > 0 && (
           <div className="mt-10 lg:grid lg:grid-cols-[1fr_260px] lg:items-start lg:gap-10">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {displayedArticles.map((article) => (
+            <div className="flex flex-col divide-y divide-slate-100 sm:grid sm:grid-cols-2 sm:gap-4 sm:divide-y-0 lg:grid-cols-3">
+              {pageArticles.map((article, index) => (
                 <Link
                   key={article.id}
+                  ref={index === 0 ? firstCardRef : undefined}
                   to={`/articles/${article.slug}`}
-                  className="group relative aspect-square w-full overflow-hidden rounded-2xl border border-slate-200 bg-[#023047]/5"
+                  className="group flex items-stretch gap-3 py-3 sm:relative sm:block sm:aspect-square sm:gap-0 sm:overflow-hidden sm:rounded-2xl sm:border sm:border-slate-200 sm:bg-[#023047]/5 sm:py-0"
                 >
-                  {article.coverImageUrl ? (
-                    <img
-                      src={article.coverImageUrl}
-                      alt=""
-                      className="h-full w-full object-cover grayscale-0 transition-all duration-500 group-hover:scale-105 group-hover:grayscale"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-[#023047]/30">
-                      <Newspaper className="h-6 w-6" />
-                    </div>
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-4 pt-12">
+                  <div className="h-24 w-24 shrink-0 overflow-hidden bg-[#023047]/5 sm:absolute sm:inset-0 sm:h-full sm:w-full">
+                    {article.coverImageUrl ? (
+                      <img
+                        src={article.coverImageUrl}
+                        alt=""
+                        className="h-full w-full object-cover grayscale-0 transition-all duration-500 group-hover:scale-105 sm:group-hover:grayscale"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center text-[#023047]/30">
+                        <Newspaper className="h-6 w-6" />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 sm:absolute sm:inset-x-0 sm:bottom-0 sm:justify-end sm:gap-0 sm:bg-gradient-to-t sm:from-black/85 sm:via-black/50 sm:to-transparent sm:p-4 sm:pt-12">
                     {article.tags.length > 0 && (
-                      <div className="mb-1.5 flex flex-wrap gap-1">
+                      <div className="mb-1.5 hidden flex-wrap gap-1 sm:flex">
                         {article.tags.slice(0, 3).map((tag) => (
                           <span
                             key={tag}
@@ -139,13 +185,13 @@ export default function ArticlesPage() {
                         ))}
                       </div>
                     )}
-                    <h2 className="font-huninn text-sm font-black text-white line-clamp-2">
+                    <h2 className="line-clamp-1 font-huninn text-sm font-black text-[#023047] group-hover:opacity-70 sm:line-clamp-2 sm:text-white sm:group-hover:opacity-100">
                       {lang === 'zh' ? article.titleZh : article.titleEn}
                     </h2>
-                    <p className="line-clamp-2 max-h-0 overflow-hidden text-xs leading-relaxed text-white/80 opacity-0 transition-all duration-300 group-hover:mt-1.5 group-hover:max-h-10 group-hover:opacity-100">
+                    <p className="line-clamp-2 text-xs leading-relaxed text-slate-500 sm:max-h-0 sm:overflow-hidden sm:text-white/80 sm:opacity-0 sm:transition-all sm:duration-300 sm:group-hover:mt-1.5 sm:group-hover:max-h-10 sm:group-hover:opacity-100">
                       {lang === 'zh' ? article.descriptionZh : article.descriptionEn}
                     </p>
-                    <div className="mt-2 flex items-center justify-between text-[11px] font-semibold text-white/70">
+                    <div className="mt-2 hidden items-center justify-between text-[11px] font-semibold text-white/70 sm:flex">
                       <span>{formatDate(article.publishedAt, lang)}</span>
                       <span className="flex items-center gap-2">
                         <span className="flex items-center gap-1">
@@ -164,9 +210,10 @@ export default function ArticlesPage() {
             </div>
 
             {topTags.length > 0 && (
-              <aside className="mt-10 lg:mt-0">
+              <aside className="mt-10 hidden sm:block lg:-mt-12">
                 <div className="rounded-2xl bg-white px-5 pb-5 lg:sticky lg:top-24">
-                  <h2 className="font-huninn text-xl font-black text-[#023047]">
+                  <h2 className="flex items-center gap-2 font-huninn text-xl font-black text-[#023047]">
+                    <Flame className="h-5 w-5" />
                     {lang === 'zh' ? '熱門標籤' : 'Popular Tags'}
                   </h2>
                   <ul className="mt-3 space-y-1">
@@ -187,6 +234,32 @@ export default function ArticlesPage() {
                 </div>
               </aside>
             )}
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="mt-10 flex items-center justify-center gap-4">
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              aria-label={lang === 'zh' ? '上一頁' : 'Previous page'}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:bg-[#FBD634] hover:text-[#023047] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-500"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="text-sm font-semibold text-slate-500">
+              {page} / {totalPages}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              aria-label={lang === 'zh' ? '下一頁' : 'Next page'}
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-slate-200 text-slate-500 transition-colors hover:bg-[#FBD634] hover:text-[#023047] disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-slate-500"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
         )}
       </div>

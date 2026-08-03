@@ -108,25 +108,31 @@ export default function ArticleDetailPage() {
             {lang === 'zh' ? article.titleZh : article.titleEn}
           </h1>
 
-          <div className="mt-3 flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400">
-            <span>{formatDate(article.publishedAt, lang)}</span>
-            <span className="flex items-center gap-1">
-              <Eye className="h-3.5 w-3.5" />
-              {article.viewCount}
-            </span>
-            <span className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faShare} className="h-3.5 w-3.5" />
-              {article.shareCount}
-            </span>
-            {article.tags.map((tag) => (
-              <Link
-                key={tag}
-                to={`/articles?tag=${encodeURIComponent(tag)}`}
-                className="rounded-full bg-[#023047]/5 px-2.5 py-1 font-bold text-[#023047]/60 transition-colors hover:bg-[#FBD634] hover:text-[#023047]"
-              >
-                {tag}
-              </Link>
-            ))}
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+            <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-400">
+              <span>{formatDate(article.publishedAt, lang)}</span>
+              <span className="flex items-center gap-1">
+                <Eye className="h-3.5 w-3.5" />
+                {article.viewCount}
+              </span>
+              <span className="flex items-center gap-1">
+                <FontAwesomeIcon icon={faShare} className="h-3.5 w-3.5" />
+                {article.shareCount}
+              </span>
+            </div>
+            {article.tags.length > 0 && (
+              <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold sm:gap-1">
+                {article.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    to={`/articles?tag=${encodeURIComponent(tag)}`}
+                    className="rounded-full bg-[#023047]/5 px-2.5 py-1 font-bold text-[#023047]/60 transition-colors hover:bg-[#FBD634] hover:text-[#023047]"
+                  >
+                    {tag}
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="mt-8">
